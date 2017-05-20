@@ -1,4 +1,5 @@
 # Public Web Archives
+![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)
 
 The purpose of this repository is an experiment in creating a distributed listing of web archives.
 
