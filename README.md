@@ -8,24 +8,30 @@ The list is intended to be easily readable by humans and also in a format that c
 The goal is to highlight, and help promote the sizable (and growing list!) of publicly accessible web archives all over the world, in a distributed and democratic way. A lot of people may be familiar with "Wayback Machine", but there are actually many wayback machines all over the world. Let's make them more widely known and accessible!
 
 
-## What format is the list?
+### What format is the list?
 
-The listing is presented in a single [webarchives.yaml](webarchives.yaml).
+The listing is presented in a single file: [webarchives.yaml](webarchives.yaml)
 
 YAML was chosen as it strikes a good balance between readability and being easily processable by a wide variety of tools.
 
 The file contains a top level `webarchives` keys, and each web archive is presented under a unique id.
 The web archives are listed alphabetically by id in the file.
 
-The format is also experimental and may change in the future.
+The web archive definition for each archive contains different fields based on the type of archive, although there is a lot of repetition in the fields. The focus initially is on clarity rather than conciseness to ensure the format is easy to understand.
 
-## What archives are included in the list?
+The hope is that the format would be self-documenting or at documented directly in the yaml file. The intent is for the format to be a 'living standard' that may adapt as needed.
+
+For more details about the format, please consult the latest version of the file.
+
+
+### What archives are included in the list?
 
 This is list is specifically for [web archives](https://en.wikipedia.org/wiki/Web_archiving) which preserve and provide web content and make it publicly accessible.
 
 While there are many great archives out there, the list is specifically limited to web archives.
 
-## What other properties must archives have to be included? What is relation to Memento?
+
+### What other properties must archives have to be included? What is relation to Memento?
 
 The intent is to list archives that present web content archived in their original form as much as possible.
 
@@ -39,7 +45,8 @@ Currently, the archives listed should support one of these methods of accessing 
 
 - The [CDX Server API v2](https://github.com/ikreymer/pywb/wiki/CDX-Server-API), [CDX Server API v1](https://github.com/internetarchive/wayback/blob/master/wayback-cdx-server/README.md) provides an alternate API for providing access to web archive index.
 
-## What if a web archive does not support either Memento or CDX API?
+
+### What if a web archive does not support either Memento or CDX API?
 
 A key goal is to include all publicly accessible web archives!
 
@@ -51,7 +58,7 @@ If there is another API spec that should be included, feel free to submit it as 
 For example, a standard "Wayback Machine"-style interface should be enough to include an archive in a defined way, and it need to be limited to this access pattern either.
 
 
-## Why make such a list here?
+### Why make such a list here?
 
 The intent of this list is to be:
 
@@ -59,7 +66,10 @@ The intent of this list is to be:
 - independent from any specific product, service or protocol.
 - presented in a human and machine-readable format
 
-## Aren't there other archives lists out there already?
+The list is intended to encourage interoperability and interconnectedness between different web archives.
+
+
+### Aren't there other archives lists out there already?
 
 It is important to recognize that there are a few existing lists out there, mostly originating from the Memento project:
 
@@ -70,11 +80,12 @@ It is important to recognize that there are a few existing lists out there, most
 
 - Wikipedia also maintains a [Listing of Web archiving initiatives](https://en.wikipedia.org/wiki/List_of_Web_archiving_initiatives)
 
-If there are other such lists, feel free to let us know or submit a pull-request to include them here.
+If there are other such lists, feel free to let us know or submit a pull request to include them here.
 
-## Who can contribute? What if I'd like to add/remove a web archive?
 
-Anyone! We encouraged contributions to make this a truly distributed project:
+### Who can contribute? What if I'd like to add/remove a web archive?
+
+Anyone can contribute! We definitely encourage contributions to this repo to make it a truly distributed project:
 
 - If you have a web archive not on the list, and you would like it to be included, feel free to make a PR adding the archive.
 
@@ -82,17 +93,23 @@ Anyone! We encouraged contributions to make this a truly distributed project:
 
 - If you have a question about how to include a new type of web archive, please open an issue to discuss.
 
-- If you would like to make your fork, and add new archives but not include them in our list, feel free to do that as well!
+- If you would like to make your fork, public or private, feel free to do that as the list is released into the public domain under CC0.
 
-## How does this relate to the Webrecorder project?
+
+### How does this relate to the Webrecorder project?
 
 The [Webrecorder project](https://webrecorder.io/) aims to promote distributed web archiving, encouraging others to create and run their own web archives. Having a growing web archive list aligns perfectly with these goals.
 
 Webrecorder may use this list to help users augment existing public web archives and create new archives.
 
-## Why isn't Webrecroder.io included in this list?
+
+### Why isn't Webrecroder included in this list?
 
 Good question! Mostly because there is not a single access point for public collections. Webrecorder allows users to create public and private collections, and there is not a way to access the content that users have made public through a single access point.
 
 This question will help us motivate to solve this issue :)
 
+
+### License
+
+This document and the accompanying webarchives.yaml list are released into the public domain under CC0.
