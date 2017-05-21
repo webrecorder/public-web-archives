@@ -1,5 +1,12 @@
 # The list of web archives
 webarchives:
+    archiveis:
+        name: 'archive.is'
+
+        type: memento
+        timegate_url: http://archive.is/timegate/
+        timemap_url: http://archive.is/timemap/
+
     ait:
         name: 'Archive-It'
         info: 'https://archive-it.org/'
@@ -18,6 +25,13 @@ webarchives:
         replay_url: https://wayback.archive-it.org/{src_coll}/{timestamp}id_/{url}
         parse_collection: true
 
+    aueb:
+        name: 'Web Archive of Athens University'
+        info 'http://archive.aueb.gr/'
+
+        type: wayback
+        replay_url: 'http://83.212.204.92:8080/wayback/{timestamp}id_/{url}'
+
     ba:
         name: 'Bibliotheca Alexandrina Web Archive'
         info: 'http://www.bibalex.org/isis/frontend/archive/archive_web.aspx'
@@ -27,6 +41,15 @@ webarchives:
         timemap_url: http://web.archive.bibalex.org/web/timemap/link/{url}
         replay_url: http://web.archive.bibalex.org/web/{timestamp}im_/{url}
 
+    bab:
+        name: 'Bavarian State Library'
+        info: 'http://langzeitarchivierung.bib-bvb.de/'
+
+        type: memento
+        timegate_url: 'http://langzeitarchivierung.bib-bvb.de/wayback/'
+        timemap_url: 'http://langzeitarchivierung.bib-bvb.de/wayback/timemap/link/'
+        replay_url: http://langzeitarchivierung.bib-bvb.de/wayback/{timestamp}id_/{url}
+
     bl:
         name: 'UK Web Archive'
         info: 'http://www.webarchive.org.uk/ukwa/'
@@ -35,6 +58,34 @@ webarchives:
         timegate_url: https://www.webarchive.org.uk/wayback/archive/{url}
         timemap_url: https://www.webarchive.org.uk/wayback/archive/timemap/link/{url}
         replay_url: https://www.webarchive.org.uk/wayback/archive/{timestamp}id_/{url}
+
+    es:
+        name: 'Estonian Web Archive'
+        info: 'http://veebiarhiiv.digar.ee/'
+
+        type: wayback
+        replay_url: 'http://veebiarhiiv.digar.ee/a/{timestamp}id_/{url}'
+
+    eu_coll:
+        name: 'European Web Archive Collections'
+        info: 'http://collection.europarchive.org/'
+
+        type: memento
+        timegate_url: http://collections.europarchive.org/{src_coll}/timegate/{url}
+        timemap_url: http://collections.europachive.org/{src_coll}/timemap/{url}
+        replay_url: http://collections.europarchive.org/{src_coll}/raw/{timestamp}/{url}
+        parse_collection: true
+
+    gcwa:
+        name: 'Government of Canada'
+        info: 'http://www.collectionscanada.gc.ca/webarchives/'
+
+        type: wayback
+        user_replay_url: http://www.collectionscanada.gc.ca/webarchives/{timestamp}/{url}
+
+    hra:
+        name: 'Croatian Web Archive'
+        info: 'http://haw.nsk.hr/'
 
     ia:
         name: 'Internet Archive'
@@ -63,6 +114,13 @@ webarchives:
         timemap_url: http://webarchive.loc.gov/all/timemap/link/{url}
         replay_url: http://webarchive.loc.gov/all/{timestamp}id_/{url}
 
+    padicat:
+        name: 'Catalonian Web Archive'
+        info: 'https://www.padicat.cat/ca'
+
+        type: wayback
+        replay_url: 'https://wayback.padicat.cat/wayback/{timestamp}id_/{url}'
+
     perma:
         name: 'Perma.cc'
         info: 'https://perma.cc/'
@@ -71,6 +129,13 @@ webarchives:
         timegate_url: http://perma-archives.org/warc/timegate/
         timemap_url: http://perma-archives.org/warc/timemap/*/{url}
         replay_url: http://perma-archives.org/warc/{timestamp}id_/{url}
+
+    proni:
+        name: 'Public Record Office of Northern Ireland'
+        info: http://webarchive.proni.gov.uk/
+        timegate_url: http://webarchive.proni.gov.uk/timegate/
+        timemap_url: http://webarchive.proni.gov.uk/timemap/
+        replay_url: http://webarchive.proni.gov.uk/raw/{timestamp}/{url}
 
     pwa:
         name: 'Portuguese Web Archive'
@@ -90,6 +155,13 @@ webarchives:
         timemap_url: http://webenact.rhizome.org/all/timemap/*/{url}
         replay_url: http://webenact.rhizome.org/all/{timestamp}id_/{url}
 
+    snlwa:
+        name: 'Slovenian National Library Web Archive'
+        info: 'http://arhiv.nuk.uni-lj.si/o-arhivu'
+
+        type: wayback
+        replay_url: 'http://nukrobi2.nuk.uni-lj.si:8080/wayback/{timestamp}id_/{url}'
+
     swa:
         name: 'Stanford Web Archive'
         info: 'https://swap.stanford.edu/'
@@ -98,6 +170,44 @@ webarchives:
         timegate_url: https://swap.stanford.edu/{url}
         timemap_url: https://swap.stanford.edu/timemap/link/{url}
         replay_url: https://swap.stanford.edu/{timestamp}id_/{url}
+
+    uk_parliament:
+        name: 'UK Parliament Web Archive'
+        info: 'http://webarchive.parliament.uk/'
+
+        type: memento
+        timegate_url: https://webarchive.parliament.uk/{url}
+        timemap_url: https://webarchive.parliament.uk/timemap/*/{url}
+        replay_url: http://webarchive.parliament.uk/{timestamp}id_/{url}
+
+    uk_natarchives:
+        name: 'UK National Archives'
+        info: http://www.nationalarchives.gov.uk/webarchive/
+
+        type: memento
+        timegate_url: http://webarchive.nationalarchives.gov.uk/timegate/{url}
+        timemap_url: http://webarchive.nationalarchives.gov.uk/timemap/{url}
+        replay_url: http://webarchive.nationalarchives.gov.uk/raw/{timestamp}/{url}
+
+    was:
+        name: 'Web Archive Singapore'
+        info: 'http://eresources.nlb.gov.sg/webarchives/'
+
+        type: wayback
+        replay_url: 'http://eresources.nlb.gov.sg/webarchives/wayback/{timestamp}id_/{url}'
+
+    webcitation:
+        name: 'WebCite'
+        info: 'http://www.webcitation.org/'
+
+    yorku:
+        name: 'York University Archive'
+        info: 'https://digital.library.yorku.ca/wayback/'
+
+        type: memento
+        timegate_url: https://digital.library.yorku.ca/wayback/{url}
+        timemap_url: https://digital.library.yorku.ca/wayback/timemap/link/{url}
+        replay_url: https://digital.library.yorku.ca/wayback/{timestamp}id_/{url}
 
 
 # format version for this file
