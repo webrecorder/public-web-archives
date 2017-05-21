@@ -1,5 +1,4 @@
 # Public Web Archives
-![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)
 
 The purpose of this repository is an experiment in creating a distributed listing of web archives.
 
@@ -71,14 +70,16 @@ The list is intended to encourage interoperability and interconnectedness betwee
 
 ### Aren't there other archives lists out there already?
 
-It is important to recognize that there are a few existing lists out there, mostly originating from the Memento project:
+Yes! It is important to recognize that there are a few existing lists out there, mostly originating from the Memento project.
 
  - The [Memento Project](http://timetravel.mementoweb.org/) at LANL deserves much credit for starting and maintaining [achivelist.xml](http://labs.mementoweb.org/aggregator_config/archivelist.xml), a list of archives that support the [Memento Protocol](https://tools.ietf.org/html/rfc7089).
    This list is a key part of the [time travel search engine](http://timetravel.mementoweb.org/about/) and [memento aggregator api service](http://timetravel.mementoweb.org/guide/api/)
 
  - The [ODU Memento Aggregator](https://github.com/oduwsdl/memgator) project also contains such a list: [archives.json](https://github.com/oduwsdl/memgator/blob/master/archives.json)
+ 
+ - The [oldweb.today](http://oldweb.today/) project uses an earlier version of such a list: [archives.yaml](https://github.com/oldweb-today/netcapsule/blob/master/archives.yaml) Thie list is used to provide archives accessible via the service.
 
-- Wikipedia also maintains a [Listing of Web archiving initiatives](https://en.wikipedia.org/wiki/List_of_Web_archiving_initiatives)
+ - Wikipedia also maintains a [Listing of Web archiving initiatives](https://en.wikipedia.org/wiki/List_of_Web_archiving_initiatives)
 
 If there are other such lists, feel free to let us know or submit a pull request to include them here.
 
@@ -111,5 +112,6 @@ This question will help us motivate to solve this issue :)
 
 
 ### License
+![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)
 
 This document and the accompanying webarchives.yaml list are released into the public domain under CC0.
