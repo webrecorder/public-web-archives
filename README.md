@@ -13,14 +13,11 @@ The listing is presented in a single file: [webarchives.yaml](webarchives.yaml)
 
 YAML was chosen as it strikes a good balance between readability and being easily processable by a wide variety of tools.
 
-The file contains a top level `webarchives` keys, and each web archive is presented under a unique id.
-The web archives are listed alphabetically by id in the file.
+The file contains entries for each known web archive and what common APIs the web archive supports.
 
-The web archive definition for each archive contains different fields based on the type of archive, although there is a lot of repetition in the fields. The focus initially is on clarity rather than conciseness to ensure the format is easy to understand.
+The hope is that the format would be mostly self-documenting and/or documented directly in the yaml file. The intent is for the format to be a 'living standard' that may adapt as needed.
 
-The hope is that the format would be self-documenting or at documented directly in the yaml file. The intent is for the format to be a 'living standard' that may adapt as needed.
-
-For more details about the format, please consult the latest version of the file.
+For more specifics about the current format, please consult the latest version of the file.
 
 
 ### What archives are included in the list?
@@ -30,31 +27,25 @@ This is list is specifically for [web archives](https://en.wikipedia.org/wiki/We
 While there are many great archives out there, the list is specifically limited to web archives.
 
 
-### What other properties must archives have to be included? What is relation to Memento?
+### What other properties must archives have to be included?
 
-The intent is to list archives that present web content archived in their original form as much as possible.
+The intent is to list archives that present web content archived in their original form as much as possible, and/or archives that support established web archiving APIs for interoperability.
 
-Archives which only present derived content, such as screenshots, can also be included on a case-by-case basis.
+However, archives which only present derived content, such as screenshots, can also be included on a case-by-case basis.
 
-The information about the type of content the archive presents can be conveted in the YAML file.
+Currently, endpoints for the following common web archiving APIs, if supported by the web archive, are included in the list:
 
-Currently, the archives listed should support one of these methods of accessing web archives:
+- `memento` -- Support for [Memento Protocol](https://tools.ietf.org/html/rfc7089), the appropriate endpoints should be included.
 
-- The [Memento Protocol](https://tools.ietf.org/html/rfc7089) is one way of making web archive data accessible in a consistent way, and archives that support
+- `cdx` -- Support for [CDX Server API v2](https://github.com/ikreymer/pywb/wiki/CDX-Server-API), [CDX Server API v1](https://github.com/internetarchive/wayback/blob/master/wayback-cdx-server/README.md)
 
-- The [CDX Server API v2](https://github.com/ikreymer/pywb/wiki/CDX-Server-API), [CDX Server API v1](https://github.com/internetarchive/wayback/blob/master/wayback-cdx-server/README.md) provides an alternate API for providing access to web archive index.
+- `wayback` -- Support for 'Wayback Machine'-style replay, some variation of timestamp + url to access archived urls.
 
+It should still be possible to include public web archives, even if they do not support any of these established APIs.
 
-### What if a web archive does not support either Memento or CDX API?
-
-A key goal is to include all publicly accessible web archives!
-
-If an archive makes archival web data available publicly, through any interface, it should be possible to include it and
-define how it is accessed.
+And of course, web archives are likely to support other, custom APIs, which are not listed in the file.
 
 If there is another API spec that should be included, feel free to submit it as a request and/or suggest how it might be included!
-
-For example, a standard "Wayback Machine"-style interface should be enough to include an archive in a defined way, and it need to be limited to this access pattern either.
 
 
 ### Why make such a list here?
@@ -97,21 +88,25 @@ Anyone can contribute! We definitely encourage contributions to this repo to mak
 - If you would like to make your fork, public or private, feel free to do that as the list is released into the public domain under CC0.
 
 
-### How does this relate to the Webrecorder project?
+### What tools use this list?
 
-The [Webrecorder project](https://webrecorder.io/) aims to promote distributed web archiving, encouraging others to create and run their own web archives. Having a growing web archive list aligns perfectly with these goals.
+None yet!
 
-Webrecorder may use this list to help users augment existing public web archives and create new archives.
+But we hope that this will change, and would be happy to add any tools that make use of this list, directly or directly.
+
+A future release of [pywb](https://github.com/ikreymer/pywb) will likely add support for reading this list directly.
+
+[Webrecorder](https://webrecorder.io/) may use this list to provide users the ability to work with existing web archives.
 
 
-### Why isn't Webrecroder included in this list?
+### Who created this list?
 
-Good question! Mostly because there is not a single access point for public collections. Webrecorder allows users to create public and private collections, and there is not a way to access the content that users have made public through a single access point.
+This list originates with the [Webrecorder project](https://github.com/webrecorder/), which aims to promote distributed web archiving, encouraging anyone to create and run their own web archives. Having a public, distributed web archive list aligns perfectly with this mission.
 
-This question will help us motivate to solve this issue :)
+You may note that Webrecorder is not yet included in this list! This is mostly due to to current technical limitations. Webrecorder allows users to create public and private collections, and there is not yet a way to access the content that users have made public through a single access point. This answer is here to remind us to solve this issue :)
 
 
 ### License
 ![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)
 
-This document and the accompanying webarchives.yaml list are released into the public domain under CC0.
+This document and the accompanying [webarchives.yaml](webarchives.yaml) list are released into the public domain under CC0.
