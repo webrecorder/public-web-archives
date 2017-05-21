@@ -32,11 +32,32 @@
 #                    default: <suffix for default replay that user sees>
 #
 #
+#           # optional: supported collection
+#           # if the web archive is multi-collection archive,
+#           # the 'collections' can be used to indicate the collections
+#           # and  the {collection} variable can be used in any of the api urls
+#
+#           # if the collection list is known:
+#           collections:
+#               <coll_id 1>: 'Collection 1 Description'
+#               <coll_id_2>: 'Collection 2 Description'
+#               ...
+#
+#           # or, if collection list is unknown/too large to list/dynamic, use a regex:
+#           collections: '[\d]+'
+#
+#           # optional: if the web archive is a national archive of certain top-level domains,
+#           # these TLDs can be optionally be listed under the 'national_tld' key
+#           national_tld:
+#              - .tld
+#
 # api_defaults:
 #
 #     wayback:
 #             # add any fields that are to be added to every web archive, unless overwritten
 #
+#
+# Notes:
 #
 # the 'api_defaults' block is designed to include readability by inserting default fields into every web archive
 # if the field is not included, the value from 'api_defaults' is used
@@ -46,7 +67,9 @@
 #
 #
 
+
 webarchives:
+    # Archive-It All Collections Access
     ait:
         name: 'Archive-It'
         info: 'https://archive-it.org/'
@@ -63,18 +86,20 @@ webarchives:
                 replay_prefix: http://wayback.archive-it.org/all/
 
 
+    # Archive-It Per-Collection Access
     ait_coll:
         name: 'Archive-It Collections'
         info: 'https://archive-it.org/'
 
         apis:
             cdx:
-                query: 'https://wayback.archive-it.org/cdx?url={url}&filter=filename:ARCHIVEIT-({src_coll})-.*'
+                query: 'https://wayback.archive-it.org/cdx?url={url}&filter=filename:ARCHIVEIT-({collection})-.*'
 
             wayback:
-                replay_prefix: https://wayback.archive-it.org/{src_coll}/
+                replay_prefix: https://wayback.archive-it.org/{collection}/
         
-        parse_collection: true
+        # collection can be any number
+        collections: '[\d]+'
 
 
     archiveis:
@@ -96,7 +121,7 @@ webarchives:
                 replay_prefix: 'http://83.212.204.92:8080/wayback/'
 
 
-    ba:
+    bawa:
         name: 'Bibliotheca Alexandrina Web Archive'
         info: 'http://www.bibalex.org/isis/frontend/archive/archive_web.aspx'
 
@@ -114,20 +139,7 @@ webarchives:
                     default: {timestamp}/{url}
 
 
-    ca_wa:
-        name: 'Government of Canada'
-        info: 'http://www.collectionscanada.gc.ca/webarchives/'
-
-        apis:
-            wayback:
-                replay_prefix: http://www.collectionscanada.gc.ca/webarchives/
-
-                # override, no 'raw' available
-                replay_suffix:
-                    default: {timestamp}/{url}
-
-
-    de_bab:
+    bsl:
         name: 'Bavarian State Library'
         info: 'http://langzeitarchivierung.bib-bvb.de/'
 
@@ -140,6 +152,18 @@ webarchives:
                 replay_prefix: http://langzeitarchivierung.bib-bvb.de/wayback/
 
 
+    cat_wa:
+        name: 'Catalonian Web Archive'
+        info: 'https://www.padicat.cat/ca'
+
+        apis:
+            wayback:
+                replay_prefix: https://wayback.padicat.cat/wayback/
+
+        national_tld:
+            - .cat
+
+
     ee_wa:
         name: 'Estonian Web Archive'
         info: 'http://veebiarhiiv.digar.ee/'
@@ -148,25 +172,53 @@ webarchives:
             wayback:
                 replay_prefix: 'http://veebiarhiiv.digar.ee/a/'
 
+        national_tld:
+            - ee
 
-    eu_coll:
+
+     eu_wa_coll:
         name: 'European Web Archive Collections'
         info: 'http://collection.europarchive.org/'
 
         apis:
             memento:
-                timegate: http://collections.europarchive.org/{src_coll}/
-                timemap: http://collections.europachive.org/{src_coll}/
+                timegate: http://collections.europarchive.org/{collection}/
+                timemap: http://collections.europachive.org/{collection}/
 
             wayback:
-                replay_prefix: http://collections.europarchive.org/{src_coll}/
+                replay_prefix: http://collections.europarchive.org/{collection}/
 
                 # override, different raw suffix
                 replay_suffix:
                     raw: raw/{timestamp}/{url}
                     default: {timestamp}/{url}
 
-        parse_collection: true
+        # Collection data obtained from listing at: http://collection.europarchive.org/
+        collections:
+            legislatives_france_2012: 'Elections Legislatives France 2012'
+            presidentielles_france_2012: 'Elections Presidentielles France 2012'
+            haeu: 'European Institutions – OP and HAEU'
+            cern: 'European Organization for Nuclear Research (Switzerland) - CERN'
+            nli: 'National Library of Ireland - NLI'
+            nrs: 'National Records of Scotland'
+            proni: 'Public Record Office of Northern Ireland - PRONI'
+            tna: 'The National Archives - TNA'
+
+
+   gc_wa:
+        name: 'Government of Canada Web Archive'
+        info: 'http://www.collectionscanada.gc.ca/webarchives/'
+
+        apis:
+            wayback:
+                replay_prefix: http://www.collectionscanada.gc.ca/webarchives/
+
+                # override, no 'raw' available
+                replay_suffix:
+                    default: {timestamp}/{url}
+
+        national_tld:
+            - .gc.ca
 
 
     hr_wa:
@@ -174,6 +226,9 @@ webarchives:
         info: 'http://haw.nsk.hr/'
 
         #APIS unknown currently!
+
+        national_tld:
+            - .hr
 
 
     ia:
@@ -204,6 +259,9 @@ webarchives:
             wayback:
                 replay_prefix: http://wayback.vefsafn.is/wayback/
 
+        national_tld:
+            - .is
+
 
     loc:
         name: 'Library of Congress'
@@ -218,13 +276,23 @@ webarchives:
                 replay_prefix: http://webarchive.loc.gov/all/
 
 
-    cat_wa:
-        name: 'Catalonian Web Archive'
-        info: 'https://www.padicat.cat/ca'
+    nara:
+        name: 'National Archives and Record Administartion'
+        info: 'https://webharvest.gov/'
 
         apis:
             wayback:
-                replay_prefix: https://wayback.padicat.cat/wayback/
+                replay_prefix: https://www.webharvest.gov/{collection}/
+
+        # Collection data obtained from listing at: https://www.webharvest.gov/
+        collections:
+            peth04: 'Presidential Term (2004)'
+            congress109th: '109th Congress (2006)'
+            congress110th: '110th Congress (2008)'
+            congress111th: '111th Congress (2010)'
+            congress112th: '112th Congress (2012)'
+            congress113th: '113th Congress (2014)'
+            congress114th: '114th Congress (2016)'
 
 
     perma:
@@ -252,6 +320,9 @@ webarchives:
             wayback:
                 replay_prefix: http://arquivo.pt/wayback/
 
+        national_tld:
+            - .pt
+
 
     rhiz:
         name: 'Rhizome Webenact'
@@ -266,6 +337,18 @@ webarchives:
                 replay_prefix: http://webenact.rhizome.org/all/
 
 
+    sg_wa:
+        name: 'Web Archive Singapore'
+        info: 'http://eresources.nlb.gov.sg/webarchives/'
+
+        apis:
+            wayback:
+                replay_prefix: http://eresources.nlb.gov.sg/webarchives/wayback/
+
+        national_tld:
+            - .sg
+
+
     si_wa:
         name: 'Slovenian National Library Web Archive'
         info: 'http://arhiv.nuk.uni-lj.si/o-arhivu'
@@ -273,6 +356,9 @@ webarchives:
         apis:
             wayback:
                 replay_prefix: 'http://nukrobi2.nuk.uni-lj.si:8080/wayback/'
+
+        national_tld:
+            - .si
 
 
     swap:
@@ -286,19 +372,6 @@ webarchives:
 
             wayback:
                 replay_prefix: https://swap.stanford.edu/
-
-
-    uk_bl:
-        name: 'UK British Library Web Archive'
-        info: 'http://www.webarchive.org.uk/ukwa/'
-
-        apis:
-            memento:
-                timegate: https://www.webarchive.org.uk/wayback/archive/
-                timemap: https://www.webarchive.org.uk/wayback/archive/timemap/link/
-
-            wayback:
-                replay_prefix: https://www.webarchive.org.uk/wayback/archive/
 
 
     uk_parliament:
@@ -351,13 +424,20 @@ webarchives:
                     default: {timestamp}/{url}
 
 
-    sg_wa:
-        name: 'Web Archive Singapore'
-        info: 'http://eresources.nlb.gov.sg/webarchives/'
+    uk_wa:
+        name: 'UK British Library Web Archive'
+        info: 'http://www.webarchive.org.uk/ukwa/'
 
         apis:
+            memento:
+                timegate: https://www.webarchive.org.uk/wayback/archive/
+                timemap: https://www.webarchive.org.uk/wayback/archive/timemap/link/
+
             wayback:
-                replay_prefix: http://eresources.nlb.gov.sg/webarchives/wayback/
+                replay_prefix: https://www.webarchive.org.uk/wayback/archive/
+
+        national_tld:
+            - .uk
 
 
     webcitation:
@@ -390,7 +470,7 @@ api_defaults:
 
 
 # format version for this file
-version: '0.5'
+version: '0.6'
 
 
 
