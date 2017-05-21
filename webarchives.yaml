@@ -1,4 +1,51 @@
-# The list of web archives
+# Format: The following is a template for the format used and some comments
+#
+#
+# webarchives:
+#
+#     <unique_id>:
+#
+#         name: <human readable name>
+#         info: <a url pointing to web archive home page, or more info about the archive>
+#
+#         # known apis supported by the web archive, if any, are added here
+#         apis:
+#             # add if archive supports Memento Protocol API
+#             memento:
+#                timegate: <a url to memento TimeGate>
+#                timemap:  <a url to memento TimeMap>
+#
+#             # add if archive supports CDX Server APIs
+#             cdx:
+#                query: <a url to CDX Server endpoint>
+#
+#
+#             # add if the archive supports 'Wayback Machine' style replay
+#             # using timestamp + url
+#             wayback:
+#                replay_prefix: <a url for wayback replay prefix>
+#
+#                # optional: possible suffixes for replay
+#                # the suffixes may contain {timestamp} and {url} variables
+#                replay_suffix:
+#                    raw: <suffix for 'raw' content replay
+#                    default: <suffix for default replay that user sees>
+#
+#
+# api_defaults:
+#
+#     wayback:
+#             # add any fields that are to be added to every web archive, unless overwritten
+#
+#
+# the 'api_defaults' block is designed to include readability by inserting default fields into every web archive
+# if the field is not included, the value from 'api_defaults' is used
+#
+# The 'replay_suffix' field is an example of such a field, as it is the same for most web archives that support
+# a Wayback Machine API, and only included if there are differences
+#
+#
+
 webarchives:
     ait:
         name: 'Archive-It'
@@ -335,7 +382,7 @@ webarchives:
 
 # default properties added to api block, if field unset
 # eg. 'replay_suffix' only added if no replay_suffix present in definition block
-defaults:
+api_defaults:
     wayback:
         replay_suffix:
             raw: {timestamp}id_/{url}
