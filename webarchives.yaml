@@ -1,215 +1,349 @@
 # The list of web archives
 webarchives:
-    archiveis:
-        name: 'archive.is'
-
-        type: memento
-        timegate_url: http://archive.is/timegate/
-        timemap_url: http://archive.is/timemap/
-
     ait:
         name: 'Archive-It'
         info: 'https://archive-it.org/'
 
-        type: memento
-        timegate_url: http://wayback.archive-it.org/all/{url}
-        timemap_url: http://wayback.archive-it.org/all/timemap/link/{url}
-        replay_url: http://wayback.archive-it.org/all/{timestamp}id_/{url}
+        apis:
+            memento:
+                timegate: http://wayback.archive-it.org/all/
+                timemap: http://wayback.archive-it.org/all/timemap/link/
+
+            cdx:
+                query: 'https://wayback.archive-it.org/cdx?url={url}'
+
+            wayback:
+                replay_prefix: http://wayback.archive-it.org/all/
+
 
     ait_coll:
         name: 'Archive-It Collections'
         info: 'https://archive-it.org/'
 
-        type: cdx
-        api_url: 'https://wayback.archive-it.org/cdx?url={url}&filter=filename:ARCHIVEIT-({src_coll})-.*'
-        replay_url: https://wayback.archive-it.org/{src_coll}/{timestamp}id_/{url}
+        apis:
+            cdx:
+                query: 'https://wayback.archive-it.org/cdx?url={url}&filter=filename:ARCHIVEIT-({src_coll})-.*'
+
+            wayback:
+                replay_prefix: https://wayback.archive-it.org/{src_coll}/
+        
         parse_collection: true
+
+
+    archiveis:
+        name: 'archive.is'
+        info: 'http://archive.is/'
+
+        apis:
+            memento:
+                timegate: http://archive.is/timegate/
+                timemap:  http://archive.is/timemap/
+
 
     aueb:
         name: 'Web Archive of Athens University'
-        info 'http://archive.aueb.gr/'
+        info: 'http://archive.aueb.gr/'
 
-        type: wayback
-        replay_url: 'http://83.212.204.92:8080/wayback/{timestamp}id_/{url}'
+        apis:
+            wayback:
+                replay_prefix: 'http://83.212.204.92:8080/wayback/'
+
 
     ba:
         name: 'Bibliotheca Alexandrina Web Archive'
         info: 'http://www.bibalex.org/isis/frontend/archive/archive_web.aspx'
 
-        type: memento
-        timegate_url: http://web.archive.bibalex.org/web/{url}
-        timemap_url: http://web.archive.bibalex.org/web/timemap/link/{url}
-        replay_url: http://web.archive.bibalex.org/web/{timestamp}im_/{url}
+        apis:
+            memento:
+                timegate: http://web.archive.bibalex.org/web/
+                timemap: http://web.archive.bibalex.org/web/timemap/link/
 
-    bab:
+            wayback:
+                replay_prefix: http://web.archive.bibalex.org/web/
+
+                # specify explicitly because raw uses 'im_' instead of 'id_'
+                replay_suffix:
+                    raw: {timestamp}im_/{url}
+                    default: {timestamp}/{url}
+
+
+    ca_wa:
+        name: 'Government of Canada'
+        info: 'http://www.collectionscanada.gc.ca/webarchives/'
+
+        apis:
+            wayback:
+                replay_prefix: http://www.collectionscanada.gc.ca/webarchives/
+
+                # override, no 'raw' available
+                replay_suffix:
+                    default: {timestamp}/{url}
+
+
+    de_bab:
         name: 'Bavarian State Library'
         info: 'http://langzeitarchivierung.bib-bvb.de/'
 
-        type: memento
-        timegate_url: 'http://langzeitarchivierung.bib-bvb.de/wayback/'
-        timemap_url: 'http://langzeitarchivierung.bib-bvb.de/wayback/timemap/link/'
-        replay_url: http://langzeitarchivierung.bib-bvb.de/wayback/{timestamp}id_/{url}
+        apis:
+            memento:
+                timegate: http://langzeitarchivierung.bib-bvb.de/wayback/
+                timemap: http://langzeitarchivierung.bib-bvb.de/wayback/timemap/link/
 
-    bl:
-        name: 'UK Web Archive'
-        info: 'http://www.webarchive.org.uk/ukwa/'
+            wayback:
+                replay_prefix: http://langzeitarchivierung.bib-bvb.de/wayback/
 
-        type: memento
-        timegate_url: https://www.webarchive.org.uk/wayback/archive/{url}
-        timemap_url: https://www.webarchive.org.uk/wayback/archive/timemap/link/{url}
-        replay_url: https://www.webarchive.org.uk/wayback/archive/{timestamp}id_/{url}
 
-    es:
+    ee_wa:
         name: 'Estonian Web Archive'
         info: 'http://veebiarhiiv.digar.ee/'
 
-        type: wayback
-        replay_url: 'http://veebiarhiiv.digar.ee/a/{timestamp}id_/{url}'
+        apis:
+            wayback:
+                replay_prefix: 'http://veebiarhiiv.digar.ee/a/'
+
 
     eu_coll:
         name: 'European Web Archive Collections'
         info: 'http://collection.europarchive.org/'
 
-        type: memento
-        timegate_url: http://collections.europarchive.org/{src_coll}/timegate/{url}
-        timemap_url: http://collections.europachive.org/{src_coll}/timemap/{url}
-        replay_url: http://collections.europarchive.org/{src_coll}/raw/{timestamp}/{url}
+        apis:
+            memento:
+                timegate: http://collections.europarchive.org/{src_coll}/
+                timemap: http://collections.europachive.org/{src_coll}/
+
+            wayback:
+                replay_prefix: http://collections.europarchive.org/{src_coll}/
+
+                # override, different raw suffix
+                replay_suffix:
+                    raw: raw/{timestamp}/{url}
+                    default: {timestamp}/{url}
+
         parse_collection: true
 
-    gcwa:
-        name: 'Government of Canada'
-        info: 'http://www.collectionscanada.gc.ca/webarchives/'
 
-        type: wayback
-        user_replay_url: http://www.collectionscanada.gc.ca/webarchives/{timestamp}/{url}
-
-    hra:
+    hr_wa:
         name: 'Croatian Web Archive'
         info: 'http://haw.nsk.hr/'
+
+        #APIS unknown currently!
+
 
     ia:
         name: 'Internet Archive'
         info: 'https://archive.org/web/'
         
-        type: memento
-        timegate_url: https://web.archive.org/web/{url}
-        timemap_url: https://web.archive.org/web/timemap/link/{url}
-        replay_url: https://web.archive.org/web/{timestamp}id_/{url}
+        apis:
+            memento:
+                timegate: https://web.archive.org/web/
+                timemap: https://web.archive.org/web/timemap/link/
 
-    is:
+            cdx:
+                query: https://web.archive.org/cdx/search/cdx?url={url}
+        
+            wayback:
+                replay_prefix: https://web.archive.org/web/
+
+
+    is_wa:
         name: 'Icelandic Web Archive'
         info: 'http://vefsafn.is/'
 
-        type: memento
-        timegate_url: http://wayback.vefsafn.is/wayback/{url}
-        timemap_url: http://wayback.vefsafn.is/wayback/timemap/link/{url}
-        replay_url: http://wayback.vefsafn.is/wayback/{timestamp}id_/{url}
+        apis:
+            memento:
+                timegate: http://wayback.vefsafn.is/wayback/
+                timemap: http://wayback.vefsafn.is/wayback/timemap/link/
+
+            wayback:
+                replay_prefix: http://wayback.vefsafn.is/wayback/
+
 
     loc:
         name: 'Library of Congress'
         info: 'http://loc.gov/websites/'
 
-        type: memento
-        timegate_url: http://webarchive.loc.gov/all/{url}
-        timemap_url: http://webarchive.loc.gov/all/timemap/link/{url}
-        replay_url: http://webarchive.loc.gov/all/{timestamp}id_/{url}
+        apis:
+            memento:
+                timegate: http://webarchive.loc.gov/all/
+                timemap: http://webarchive.loc.gov/all/timemap/link/
 
-    padicat:
+            wayback:
+                replay_prefix: http://webarchive.loc.gov/all/
+
+
+    cat_wa:
         name: 'Catalonian Web Archive'
         info: 'https://www.padicat.cat/ca'
 
-        type: wayback
-        replay_url: 'https://wayback.padicat.cat/wayback/{timestamp}id_/{url}'
+        apis:
+            wayback:
+                replay_prefix: https://wayback.padicat.cat/wayback/
+
 
     perma:
         name: 'Perma.cc'
         info: 'https://perma.cc/'
 
-        type: memento
-        timegate_url: http://perma-archives.org/warc/timegate/
-        timemap_url: http://perma-archives.org/warc/timemap/*/{url}
-        replay_url: http://perma-archives.org/warc/{timestamp}id_/{url}
+        apis:
+            memento:
+                timegate: http://perma-archives.org/warc/timegate/
+                timemap: http://perma-archives.org/warc/timemap/*/
 
-    proni:
-        name: 'Public Record Office of Northern Ireland'
-        info: http://webarchive.proni.gov.uk/
-        timegate_url: http://webarchive.proni.gov.uk/timegate/
-        timemap_url: http://webarchive.proni.gov.uk/timemap/
-        replay_url: http://webarchive.proni.gov.uk/raw/{timestamp}/{url}
+            wayback:
+                replay_prefix: http://perma-archives.org/warc/
 
-    pwa:
+
+    pt_wa:
         name: 'Portuguese Web Archive'
         info: 'http://arquivo.pt/'
 
-        type: memento
-        timegate_url: http://arquivo.pt/wayback/{url}
-        timemap_url: http://arquivo.pt/wayback/timemap/*/{url}
-        replay_url: http://arquivo.pt/wayback/{timestamp}id_/{url}
+        apis:
+            memento:
+                timegate: http://arquivo.pt/wayback/
+                timemap: http://arquivo.pt/wayback/timemap/*/
+
+            wayback:
+                replay_prefix: http://arquivo.pt/wayback/
+
 
     rhiz:
         name: 'Rhizome Webenact'
         info: 'http://webenact.rhizome.org/'
 
-        type: memento
-        timegate_url: http://webenact.rhizome.org/all/{url}
-        timemap_url: http://webenact.rhizome.org/all/timemap/*/{url}
-        replay_url: http://webenact.rhizome.org/all/{timestamp}id_/{url}
+        apis:
+            memento:
+                timegate: http://webenact.rhizome.org/all/
+                timemap: http://webenact.rhizome.org/all/timemap/*/
 
-    snlwa:
+            wayback:
+                replay_prefix: http://webenact.rhizome.org/all/
+
+
+    si_wa:
         name: 'Slovenian National Library Web Archive'
         info: 'http://arhiv.nuk.uni-lj.si/o-arhivu'
 
-        type: wayback
-        replay_url: 'http://nukrobi2.nuk.uni-lj.si:8080/wayback/{timestamp}id_/{url}'
+        apis:
+            wayback:
+                replay_prefix: 'http://nukrobi2.nuk.uni-lj.si:8080/wayback/'
 
-    swa:
+
+    swap:
         name: 'Stanford Web Archive'
         info: 'https://swap.stanford.edu/'
 
-        type: memento
-        timegate_url: https://swap.stanford.edu/{url}
-        timemap_url: https://swap.stanford.edu/timemap/link/{url}
-        replay_url: https://swap.stanford.edu/{timestamp}id_/{url}
+        apis:
+            memento:
+                timegate: https://swap.stanford.edu/
+                timemap: https://swap.stanford.edu/timemap/link/
+
+            wayback:
+                replay_prefix: https://swap.stanford.edu/
+
+
+    uk_bl:
+        name: 'UK British Library Web Archive'
+        info: 'http://www.webarchive.org.uk/ukwa/'
+
+        apis:
+            memento:
+                timegate: https://www.webarchive.org.uk/wayback/archive/
+                timemap: https://www.webarchive.org.uk/wayback/archive/timemap/link/
+
+            wayback:
+                replay_prefix: https://www.webarchive.org.uk/wayback/archive/
+
 
     uk_parliament:
         name: 'UK Parliament Web Archive'
         info: 'http://webarchive.parliament.uk/'
 
-        type: memento
-        timegate_url: https://webarchive.parliament.uk/{url}
-        timemap_url: https://webarchive.parliament.uk/timemap/*/{url}
-        replay_url: http://webarchive.parliament.uk/{timestamp}id_/{url}
+        apis:
+            memento:
+                timegate: https://webarchive.parliament.uk/
+                timemap: https://webarchive.parliament.uk/timemap/*/
+
+            wayback:
+                replay_prefix: http://webarchive.parliament.uk/
+
+
+    uk_proni:
+        name: 'Public Record Office of Northern Ireland'
+        info: 'http://webarchive.proni.gov.uk/'
+
+        apis:
+            memento:
+                timegate: http://webarchive.proni.gov.uk/timegate/
+                timemap: http://webarchive.proni.gov.uk/timemap/
+
+            wayback:
+                replay_prefix:
+                    http://webarchive.proni.gov.uk/
+
+                # override, different raw suffix
+                replay_suffix:
+                    raw: raw/{timestamp}/{url}
+                    default: {timestamp}/{url}
+
 
     uk_natarchives:
         name: 'UK National Archives'
         info: http://www.nationalarchives.gov.uk/webarchive/
 
-        type: memento
-        timegate_url: http://webarchive.nationalarchives.gov.uk/timegate/{url}
-        timemap_url: http://webarchive.nationalarchives.gov.uk/timemap/{url}
-        replay_url: http://webarchive.nationalarchives.gov.uk/raw/{timestamp}/{url}
+        apis:
+            memento:
+                timegate: http://webarchive.nationalarchives.gov.uk/timegate/
+                timemap: http://webarchive.nationalarchives.gov.uk/timemap/
 
-    was:
+            wayback:
+                replay_prefix: http://webarchive.nationalarchives.gov.uk/
+
+                # override, different raw suffix
+                replay_suffix:
+                    raw: raw/{timestamp}/{url}
+                    default: {timestamp}/{url}
+
+
+    sg_wa:
         name: 'Web Archive Singapore'
         info: 'http://eresources.nlb.gov.sg/webarchives/'
 
-        type: wayback
-        replay_url: 'http://eresources.nlb.gov.sg/webarchives/wayback/{timestamp}id_/{url}'
+        apis:
+            wayback:
+                replay_prefix: http://eresources.nlb.gov.sg/webarchives/wayback/
+
 
     webcitation:
         name: 'WebCite'
         info: 'http://www.webcitation.org/'
 
+        #APIS unknown
+
+
     yorku:
         name: 'York University Archive'
         info: 'https://digital.library.yorku.ca/wayback/'
 
-        type: memento
-        timegate_url: https://digital.library.yorku.ca/wayback/{url}
-        timemap_url: https://digital.library.yorku.ca/wayback/timemap/link/{url}
-        replay_url: https://digital.library.yorku.ca/wayback/{timestamp}id_/{url}
+        apis:
+            memento:
+                timegate: https://digital.library.yorku.ca/wayback/
+                timemap: https://digital.library.yorku.ca/wayback/timemap/link/
+
+            wayback:
+                replay_prefix: https://digital.library.yorku.ca/wayback/
+
+
+# default properties added to api block, if field unset
+# eg. 'replay_suffix' only added if no replay_suffix present in definition block
+defaults:
+    wayback:
+        replay_suffix:
+            raw: {timestamp}id_/{url}
+            default: {timestamp}/{url}
 
 
 # format version for this file
-version: '0.1'
+version: '0.5'
+
+
 
