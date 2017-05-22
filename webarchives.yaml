@@ -6,7 +6,7 @@
 #     <unique_id>:
 #
 #         name: <human readable name>
-#         info: <a url pointing to web archive home page, or more info about the archive>
+#         about: <a url pointing to web archive home page, or more info about the archive>
 #
 #         # known apis supported by the web archive, if any, are added here
 #         apis:
@@ -30,7 +30,7 @@
 #                # the suffixes may contain {timestamp} and {url} variables
 #                replay_suffix:
 #                    raw: <suffix for 'raw' content replay
-#                    default: <suffix for default replay that user sees
+#                    rewritten: <suffix for rewritten replay that user sees
 #
 #                # optional: calendar page suffix
 #                calendar_suffix: <suffix for calendar listing, generally just '*/'>
@@ -43,17 +43,22 @@
 #
 #           # if the collection list is known:
 #           collections:
-#               <coll_id 1>: 'Collection 1 Description'
-#               <coll_id_2>: 'Collection 2 Description'
+#               - id: <coll_id_1>
+#                 name: 'Collection 1 Description'
+#
+#               - id: <coll_id_2>
+#                 name: 'Collection 2 Description'
 #               ...
 #
 #           # or, if collection list is unknown/too large to list/dynamic, use a regex:
 #           collections: '\d+'
 #
-#           # optional: if the web archive is a national archive of certain top-level domains,
-#           # these TLDs can be optionally be listed under the 'national_tld' key
-#           national_tld:
+#           # optional: if the web archive is primarily focused on certain domains or sites,
+            # (but not necessarily limtied to those), these can be included under the 'domain_hint' key
+#           # This can include top-level domains or any subomdain that the web archive specializes in
+#           domain_hint:
 #              - .tld
+#              - .example.com
 #
 # api_defaults:
 #
@@ -63,7 +68,7 @@
 #
 # Notes:
 #
-# the 'api_defaults' block is designed to include readability by inserting default fields into every web archive
+# the 'api_defaults' block is designed to include readability by inserting rewritten fields into every web archive
 # if the field is not included, the value from 'api_defaults' is used
 #
 # The 'replay_suffix' field is an example of such a field, as it is the same for most web archives that support
@@ -73,7 +78,7 @@ webarchives:
     # Archive-It All Collection Access
     ait:
         name: 'Archive-It'
-        info: 'https://archive-it.org/'
+        about: 'https://archive-it.org/'
 
         apis:
             memento:
@@ -90,7 +95,7 @@ webarchives:
     # Archive-It Per-Collection Access
     ait_coll:
         name: 'Archive-It Collections'
-        info: 'https://archive-it.org/'
+        about: 'https://archive-it.org/'
 
         apis:
             cdx:
@@ -105,7 +110,7 @@ webarchives:
 
     archiveis:
         name: 'archive.is'
-        info: 'http://archive.is/'
+        about: 'http://archive.is/'
 
         apis:
             memento:
@@ -115,7 +120,7 @@ webarchives:
 
     aueb:
         name: 'Web Archive of Athens University'
-        info: 'http://archive.aueb.gr/'
+        about: 'http://archive.aueb.gr/'
 
         apis:
             wayback:
@@ -124,7 +129,7 @@ webarchives:
 
     bawa:
         name: 'Bibliotheca Alexandrina Web Archive'
-        info: 'http://www.bibalex.org/isis/frontend/archive/archive_web.aspx'
+        about: 'http://www.bibalex.org/isis/frontend/archive/archive_web.aspx'
 
         apis:
             memento:
@@ -137,12 +142,12 @@ webarchives:
                 # specify explicitly because raw uses 'im_' instead of 'id_'
                 replay_suffix:
                     raw: '{timestamp}im_/{url}'
-                    default: '{timestamp}/{url}'
+                    rewritten: '{timestamp}/{url}'
 
 
     bsl:
         name: 'Bavarian State Library'
-        info: 'http://langzeitarchivierung.bib-bvb.de/'
+        about: 'http://langzeitarchivierung.bib-bvb.de/'
 
         apis:
             memento:
@@ -155,18 +160,18 @@ webarchives:
 
     cat_wa:
         name: 'Catalonian Web Archive'
-        info: 'https://www.padicat.cat/ca'
+        about: 'https://www.padicat.cat/ca'
 
         apis:
             wayback:
                 prefix: 'https://wayback.padicat.cat/wayback/'
 
-        national_tld:
-            - .cat
+        domain_hint:
+            - '.cat'
 
     cc:
         name: 'CommonCrawl'
-        info: 'http://commoncrawl.org'
+        about: 'http://commoncrawl.org'
 
         apis:
             cdx:
@@ -178,19 +183,19 @@ webarchives:
 
     ee_wa:
         name: 'Estonian Web Archive'
-        info: 'http://veebiarhiiv.digar.ee/'
+        about: 'http://veebiarhiiv.digar.ee/'
 
         apis:
             wayback:
                 prefix: 'http://veebiarhiiv.digar.ee/a/'
 
-        national_tld:
+        domain_hint:
             - '.ee'
 
 
     eu_wa_coll:
         name: 'European Web Archive Collections'
-        info: 'http://collection.europarchive.org/'
+        about: 'http://collection.europarchive.org/'
 
         apis:
             memento:
@@ -203,23 +208,38 @@ webarchives:
                 # override, different raw suffix
                 replay_suffix:
                     raw: 'raw/{timestamp}/{url}'
-                    default: '{timestamp}/{url}'
+                    rewritten: '{timestamp}/{url}'
 
         # Collection data obtained from listing at: http://collection.europarchive.org/
         collections:
-            legislatives_france_2012: 'Elections Legislatives France 2012'
-            presidentielles_france_2012: 'Elections Presidentielles France 2012'
-            haeu: 'European Institutions – OP and HAEU'
-            cern: 'European Organization for Nuclear Research (Switzerland) - CERN'
-            nli: 'National Library of Ireland - NLI'
-            nrs: 'National Records of Scotland'
-            proni: 'Public Record Office of Northern Ireland - PRONI'
-            tna: 'The National Archives - TNA'
+            - id: 'legislatives_france_2012'
+              name: 'Elections Legislatives France 2012'
+
+            - id: 'presidentielles_france_2012'
+              name: 'Elections Presidentielles France 2012'
+
+            - id: 'haeu'
+              name: 'European Institutions – OP and HAEU'
+
+            - id: 'cern'
+              name: 'European Organization for Nuclear Research (Switzerland) - CERN'
+
+            - id: 'nli'
+              name: 'National Library of Ireland - NLI'
+
+            - id: 'nrs'
+              name: 'National Records of Scotland'
+
+            - id: 'proni'
+              name: 'Public Record Office of Northern Ireland - PRONI'
+
+            - id: 'tna'
+              name: 'The National Archives - TNA'
 
 
     gc_wa:
         name: 'Government of Canada Web Archive'
-        info: 'http://www.collectionscanada.gc.ca/webarchives/'
+        about: 'http://www.collectionscanada.gc.ca/webarchives/'
 
         apis:
             wayback:
@@ -227,25 +247,26 @@ webarchives:
 
                 # override, no 'raw' available
                 replay_suffix:
-                    default: '{timestamp}/{url}'
+                    raw: NULL
+                    rewritten: '{timestamp}/{url}'
 
-        national_tld:
+        domain_hint:
             - '.gc.ca'
 
 
     hr_wa:
         name: 'Croatian Web Archive'
-        info: 'http://haw.nsk.hr/'
+        about: 'http://haw.nsk.hr/'
 
         #APIS unknown currently!
 
-        national_tld:
+        domain_hint:
             - '.hr'
 
 
     ia:
         name: 'Internet Archive'
-        info: 'https://archive.org/web/'
+        about: 'https://archive.org/web/'
         
         apis:
             memento:
@@ -261,7 +282,7 @@ webarchives:
 
     is_wa:
         name: 'Icelandic Web Archive'
-        info: 'http://vefsafn.is/'
+        about: 'http://vefsafn.is/'
 
         apis:
             memento:
@@ -271,13 +292,13 @@ webarchives:
             wayback:
                 prefix: 'http://wayback.vefsafn.is/wayback/'
 
-        national_tld:
-            - .is
+        domain_hint:
+            - '.is'
 
 
     loc:
         name: 'Library of Congress'
-        info: 'http://loc.gov/websites/'
+        about: 'http://loc.gov/websites/'
 
         apis:
             memento:
@@ -290,7 +311,7 @@ webarchives:
 
     nara:
         name: 'National Archives and Record Administartion'
-        info: 'https://webharvest.gov/'
+        about: 'https://webharvest.gov/'
 
         apis:
             wayback:
@@ -298,18 +319,31 @@ webarchives:
 
         # Collection data obtained from listing at: https://www.webharvest.gov/
         collections:
-            peth04: 'Presidential Term (2004)'
-            congress109th: '109th Congress (2006)'
-            congress110th: '110th Congress (2008)'
-            congress111th: '111th Congress (2010)'
-            congress112th: '112th Congress (2012)'
-            congress113th: '113th Congress (2014)'
-            congress114th: '114th Congress (2016)'
+            id: 'peth04'
+            name: 'Presidential Term (2004)'
+
+            id: 'congress109th'
+            name: '109th Congress (2006)'
+
+            id: 'congress110th'
+            name: '110th Congress (2008)'
+
+            id: 'congress111th'
+            name: '111th Congress (2010)'
+
+            id: 'congress112th'
+            name: '112th Congress (2012)'
+
+            id: 'congress113th'
+            name: '113th Congress (2014)'
+
+            id: 'congress114th'
+            name: '114th Congress (2016)'
 
 
     perma:
         name: 'Perma.cc'
-        info: 'https://perma.cc/'
+        about: 'https://perma.cc/'
 
         apis:
             memento:
@@ -322,7 +356,7 @@ webarchives:
 
     pt_wa:
         name: 'Portuguese Web Archive'
-        info: 'http://arquivo.pt/'
+        about: 'http://arquivo.pt/'
 
         apis:
             memento:
@@ -332,13 +366,13 @@ webarchives:
             wayback:
                 prefix: 'http://arquivo.pt/wayback/'
 
-        national_tld:
+        domain_hint:
             - '.pt'
 
 
     rhiz:
         name: 'Rhizome Webenact'
-        info: 'http://webenact.rhizome.org/'
+        about: 'http://webenact.rhizome.org/'
 
         apis:
             memento:
@@ -354,31 +388,31 @@ webarchives:
 
     sg_wa:
         name: 'Web Archive Singapore'
-        info: 'http://eresources.nlb.gov.sg/webarchives/'
+        about: 'http://eresources.nlb.gov.sg/webarchives/'
 
         apis:
             wayback:
                 prefix: 'http://eresources.nlb.gov.sg/webarchives/wayback/'
 
-        national_tld:
+        domain_hint:
             - '.sg'
 
 
     si_wa:
         name: 'Slovenian National Library Web Archive'
-        info: 'http://arhiv.nuk.uni-lj.si/o-arhivu'
+        about: 'http://arhiv.nuk.uni-lj.si/o-arhivu'
 
         apis:
             wayback:
                 prefix: 'http://nukrobi2.nuk.uni-lj.si:8080/wayback/'
 
-        national_tld:
+        domain_hint:
             - '.si'
 
 
     swap:
         name: 'Stanford Web Archive'
-        info: 'https://swap.stanford.edu/'
+        about: 'https://swap.stanford.edu/'
 
         apis:
             memento:
@@ -391,7 +425,7 @@ webarchives:
 
     uk_parliament:
         name: 'UK Parliament Web Archive'
-        info: 'http://webarchive.parliament.uk/'
+        about: 'http://webarchive.parliament.uk/'
 
         apis:
             memento:
@@ -404,7 +438,7 @@ webarchives:
 
     uk_proni:
         name: 'Public Record Office of Northern Ireland'
-        info: 'http://webarchive.proni.gov.uk/'
+        about: 'http://webarchive.proni.gov.uk/'
 
         apis:
             memento:
@@ -417,12 +451,12 @@ webarchives:
                 # override, different raw suffix
                 replay_suffix:
                     raw: 'raw/{timestamp}/{url}'
-                    default: '{timestamp}/{url}'
+                    rewritten: '{timestamp}/{url}'
 
 
     uk_natarchives:
         name: 'UK National Archives'
-        info: 'http://www.nationalarchives.gov.uk/webarchive/'
+        about: 'http://www.nationalarchives.gov.uk/webarchive/'
 
         apis:
             memento:
@@ -435,12 +469,12 @@ webarchives:
                 # override, different raw suffix
                 replay_suffix:
                     raw: 'raw/{timestamp}/{url}'
-                    default: '{timestamp}/{url}'
+                    rewritten: '{timestamp}/{url}'
 
 
     uk_wa:
         name: 'UK British Library Web Archive'
-        info: 'http://www.webarchive.org.uk/ukwa/'
+        about: 'http://www.webarchive.org.uk/ukwa/'
 
         apis:
             memento:
@@ -450,20 +484,20 @@ webarchives:
             wayback:
                 prefix: 'https://www.webarchive.org.uk/wayback/archive/'
 
-        national_tld:
+        domain_hint:
             - '.uk'
 
 
     webcitation:
         name: 'WebCite'
-        info: 'http://www.webcitation.org/'
+        about: 'http://www.webcitation.org/'
 
         #APIS unknown
 
 
     yorku:
         name: 'York University Archive'
-        info: 'https://digital.library.yorku.ca/wayback/'
+        about: 'https://digital.library.yorku.ca/wayback/'
 
         apis:
             memento:
@@ -474,18 +508,20 @@ webarchives:
                 prefix: 'https://digital.library.yorku.ca/wayback/'
 
 
-# default properties added to api block, if field unset
+# rewritten properties added to api block, if field unset
 # eg. 'replay_suffix' only added if no replay_suffix present in definition block
 api_defaults:
     wayback:
         replay_suffix:
             raw: '{timestamp}id_/{url}'
-            default: '{timestamp}/{url}'
+            rewritten: '{timestamp}/{url}'
 
         calendar_suffix: '*/'
 
 
 # format version for this file
-version: '0.7'
+# note that the version referrs only to the semantics of this file, not to the contents
+# web archives can be added or removed without incrementing the version
+version: '0.8'
 
 
