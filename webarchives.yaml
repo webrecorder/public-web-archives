@@ -21,15 +21,19 @@
 #
 #
 #             # add if the archive supports 'Wayback Machine' style replay
-#             # using timestamp + url
+#             # using timestamp + url and/or calendar access via
+#             # /*/<url>
 #             wayback:
-#                replay_prefix: <a url for wayback replay prefix>
+#                prefix: <the url prefix for wayback endpoints>
 #
 #                # optional: possible suffixes for replay
 #                # the suffixes may contain {timestamp} and {url} variables
 #                replay_suffix:
 #                    raw: <suffix for 'raw' content replay
-#                    default: <suffix for default replay that user sees>
+#                    default: <suffix for default replay that user sees
+#
+#                # optional: calendar page suffix
+#                calendar_suffix: <suffix for calendar listing, generally just '*/'>
 #
 #
 #           # optional: supported collection
@@ -64,26 +68,24 @@
 #
 # The 'replay_suffix' field is an example of such a field, as it is the same for most web archives that support
 # a Wayback Machine API, and only included if there are differences
-#
-#
 
 
 webarchives:
-    # Archive-It All Collections Access
+    # Archive-It All Collection Access
     ait:
         name: 'Archive-It'
         info: 'https://archive-it.org/'
 
         apis:
             memento:
-                timegate: http://wayback.archive-it.org/all/
-                timemap: http://wayback.archive-it.org/all/timemap/link/
+                timegate: https://wayback.archive-it.org/all/
+                timemap: https://wayback.archive-it.org/all/timemap/link/
 
             cdx:
-                query: 'https://wayback.archive-it.org/cdx?url={url}'
+                query: https://wayback.archive-it.org/cdx?url={url}
 
             wayback:
-                replay_prefix: http://wayback.archive-it.org/all/
+                prefix: https://wayback.archive-it.org/all/
 
 
     # Archive-It Per-Collection Access
@@ -96,7 +98,7 @@ webarchives:
                 query: 'https://wayback.archive-it.org/cdx?url={url}&filter=filename:ARCHIVEIT-({collection})-.*'
 
             wayback:
-                replay_prefix: https://wayback.archive-it.org/{collection}/
+                prefix: https://wayback.archive-it.org/{collection}/
         
         # collection can be any number
         collections: '[\d]+'
@@ -118,7 +120,7 @@ webarchives:
 
         apis:
             wayback:
-                replay_prefix: 'http://83.212.204.92:8080/wayback/'
+                prefix: 'http://83.212.204.92:8080/wayback/'
 
 
     bawa:
@@ -131,7 +133,7 @@ webarchives:
                 timemap: http://web.archive.bibalex.org/web/timemap/link/
 
             wayback:
-                replay_prefix: http://web.archive.bibalex.org/web/
+                prefix: http://web.archive.bibalex.org/web/
 
                 # specify explicitly because raw uses 'im_' instead of 'id_'
                 replay_suffix:
@@ -149,7 +151,7 @@ webarchives:
                 timemap: http://langzeitarchivierung.bib-bvb.de/wayback/timemap/link/
 
             wayback:
-                replay_prefix: http://langzeitarchivierung.bib-bvb.de/wayback/
+                prefix: http://langzeitarchivierung.bib-bvb.de/wayback/
 
 
     cat_wa:
@@ -158,10 +160,21 @@ webarchives:
 
         apis:
             wayback:
-                replay_prefix: https://wayback.padicat.cat/wayback/
+                prefix: https://wayback.padicat.cat/wayback/
 
         national_tld:
             - .cat
+
+    cc:
+        name: 'CommonCrawl'
+        info: 'http://commoncrawl.org'
+
+        apis:
+            cdx:
+                query: http://index.commoncrawl.org/{collection}?url={url}
+
+        # Full list of collections available at: http://index.commoncrawl.org/
+        collections: 'CC-MAIN-[\d]{4}-[\d]{2}-index'
 
 
     ee_wa:
@@ -170,7 +183,7 @@ webarchives:
 
         apis:
             wayback:
-                replay_prefix: 'http://veebiarhiiv.digar.ee/a/'
+                prefix: 'http://veebiarhiiv.digar.ee/a/'
 
         national_tld:
             - ee
@@ -186,7 +199,7 @@ webarchives:
                 timemap: http://collections.europachive.org/{collection}/
 
             wayback:
-                replay_prefix: http://collections.europarchive.org/{collection}/
+                prefix: http://collections.europarchive.org/{collection}/
 
                 # override, different raw suffix
                 replay_suffix:
@@ -211,7 +224,7 @@ webarchives:
 
         apis:
             wayback:
-                replay_prefix: http://www.collectionscanada.gc.ca/webarchives/
+                prefix: http://www.collectionscanada.gc.ca/webarchives/
 
                 # override, no 'raw' available
                 replay_suffix:
@@ -244,7 +257,7 @@ webarchives:
                 query: https://web.archive.org/cdx/search/cdx?url={url}
         
             wayback:
-                replay_prefix: https://web.archive.org/web/
+                prefix: https://web.archive.org/web/
 
 
     is_wa:
@@ -257,7 +270,7 @@ webarchives:
                 timemap: http://wayback.vefsafn.is/wayback/timemap/link/
 
             wayback:
-                replay_prefix: http://wayback.vefsafn.is/wayback/
+                prefix: http://wayback.vefsafn.is/wayback/
 
         national_tld:
             - .is
@@ -273,7 +286,7 @@ webarchives:
                 timemap: http://webarchive.loc.gov/all/timemap/link/
 
             wayback:
-                replay_prefix: http://webarchive.loc.gov/all/
+                prefix: http://webarchive.loc.gov/all/
 
 
     nara:
@@ -282,7 +295,7 @@ webarchives:
 
         apis:
             wayback:
-                replay_prefix: https://www.webharvest.gov/{collection}/
+                prefix: https://www.webharvest.gov/{collection}/
 
         # Collection data obtained from listing at: https://www.webharvest.gov/
         collections:
@@ -305,7 +318,7 @@ webarchives:
                 timemap: http://perma-archives.org/warc/timemap/*/
 
             wayback:
-                replay_prefix: http://perma-archives.org/warc/
+                prefix: http://perma-archives.org/warc/
 
 
     pt_wa:
@@ -318,7 +331,7 @@ webarchives:
                 timemap: http://arquivo.pt/wayback/timemap/*/
 
             wayback:
-                replay_prefix: http://arquivo.pt/wayback/
+                prefix: http://arquivo.pt/wayback/
 
         national_tld:
             - .pt
@@ -333,8 +346,11 @@ webarchives:
                 timegate: http://webenact.rhizome.org/all/
                 timemap: http://webenact.rhizome.org/all/timemap/*/
 
+            cdx:
+                query: http://webenact.rhizome.org/all-cdx?url={url}
+
             wayback:
-                replay_prefix: http://webenact.rhizome.org/all/
+                prefix: http://webenact.rhizome.org/all/
 
 
     sg_wa:
@@ -343,7 +359,7 @@ webarchives:
 
         apis:
             wayback:
-                replay_prefix: http://eresources.nlb.gov.sg/webarchives/wayback/
+                prefix: http://eresources.nlb.gov.sg/webarchives/wayback/
 
         national_tld:
             - .sg
@@ -355,7 +371,7 @@ webarchives:
 
         apis:
             wayback:
-                replay_prefix: 'http://nukrobi2.nuk.uni-lj.si:8080/wayback/'
+                prefix: 'http://nukrobi2.nuk.uni-lj.si:8080/wayback/'
 
         national_tld:
             - .si
@@ -371,7 +387,7 @@ webarchives:
                 timemap: https://swap.stanford.edu/timemap/link/
 
             wayback:
-                replay_prefix: https://swap.stanford.edu/
+                prefix: https://swap.stanford.edu/
 
 
     uk_parliament:
@@ -384,7 +400,7 @@ webarchives:
                 timemap: https://webarchive.parliament.uk/timemap/*/
 
             wayback:
-                replay_prefix: http://webarchive.parliament.uk/
+                prefix: http://webarchive.parliament.uk/
 
 
     uk_proni:
@@ -397,7 +413,7 @@ webarchives:
                 timemap: http://webarchive.proni.gov.uk/timemap/
 
             wayback:
-                replay_prefix:
+                prefix:
                     http://webarchive.proni.gov.uk/
 
                 # override, different raw suffix
@@ -416,7 +432,7 @@ webarchives:
                 timemap: http://webarchive.nationalarchives.gov.uk/timemap/
 
             wayback:
-                replay_prefix: http://webarchive.nationalarchives.gov.uk/
+                prefix: http://webarchive.nationalarchives.gov.uk/
 
                 # override, different raw suffix
                 replay_suffix:
@@ -434,7 +450,7 @@ webarchives:
                 timemap: https://www.webarchive.org.uk/wayback/archive/timemap/link/
 
             wayback:
-                replay_prefix: https://www.webarchive.org.uk/wayback/archive/
+                prefix: https://www.webarchive.org.uk/wayback/archive/
 
         national_tld:
             - .uk
@@ -457,7 +473,7 @@ webarchives:
                 timemap: https://digital.library.yorku.ca/wayback/timemap/link/
 
             wayback:
-                replay_prefix: https://digital.library.yorku.ca/wayback/
+                prefix: https://digital.library.yorku.ca/wayback/
 
 
 # default properties added to api block, if field unset
@@ -468,9 +484,10 @@ api_defaults:
             raw: {timestamp}id_/{url}
             default: {timestamp}/{url}
 
+        calendar_suffix: */
+
 
 # format version for this file
-version: '0.6'
-
+version: 0.7
 
 
