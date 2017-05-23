@@ -15,7 +15,7 @@ webarchives:
 
     name: 'My Example Web Archive'
     about: 'http://webarchive.example.com/'
-         
+
     # optional: supported collection
     # if the web archive is multi-collection archive,
     # the 'collections' can be used to indicate the collections
@@ -34,8 +34,8 @@ webarchives:
     # collections: '\d+'
 
     # optional: if the web archive is primarily focused on certain domains or sites,
-    # (but not necessarily limtied to those), these can be included under the 'domain_hint' key
-    # This can include top-level domains or any subomdain that the web archive specializes in
+    # (but not necessarily limited to those), these can be included under the 'domain_hint' key
+    # This can include top-level domains or any subdomain that the web archive specializes in
     domain_hint:
       - .tld
       - .example.com
@@ -56,9 +56,9 @@ webarchives:
         calendar: http://webarchive.example.com/path/*/
         replay:
           rewritten: http://webarchive.example.com/path/{timestamp}/{url}
-          
+
           # if an archive doesn't support 'raw' replay, adding: 'raw: NULL' is preferred
-          raw: http://webarchive.example.com/path/{timestamp}id_/{url}      
+          raw: http://webarchive.example.com/path/{timestamp}id_/{url}
 ```
 
 
@@ -66,7 +66,7 @@ webarchives:
 
 A WAM format file should have at least the following keys:
 
-- `version` (required): The version of the WAM format, currently 1.0 
+- `version` (required): The version of the WAM format, currently 1.0
 
 - `webarchives`: The top-level key containing one or more web archives by unique id.
 
@@ -133,7 +133,7 @@ The `id` values from the collection list should then be subsitutable to get vali
 
       - id: coll_2
         name: 'Collection 2 Description'
-        
+
     api:
       wayback:
         calendar: http://myarchive.example.com/{collection}/*/{url}

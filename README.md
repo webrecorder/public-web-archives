@@ -3,7 +3,7 @@
 The purpose of this repository is an experiment in creating a distributed listing of web archives.
 
 To accomplish, a new format, the [Web Archive Manifest](WAM.md) is introduced to describe web archives and what properties and APIs they support. The format is designed to be readable by humans and processed by new and existing software tools.
- 
+
 The goal is to highlight, and help promote the sizable (and growing list!) of publicly accessible web archives all over the world, in a distributed and democratic way.
 
 A lot of people may be familiar with "Wayback Machine", but there are actually many wayback machines all over the world. Let's make them more widely known and accessible!
@@ -58,8 +58,8 @@ Yes! It is important to recognize that there are a few existing lists out there,
    This list is a key part of the [time travel search engine](http://timetravel.mementoweb.org/about/) and [memento aggregator api service](http://timetravel.mementoweb.org/guide/api/)
 
  - The [ODU Memento Aggregator](https://github.com/oduwsdl/memgator) project also contains such a list: [archives.json](https://github.com/oduwsdl/memgator/blob/master/archives.json)
- 
- - The [oldweb.today](http://oldweb.today/) project uses an earlier version of such a list: [archives.yaml](https://github.com/oldweb-today/netcapsule/blob/master/archives.yaml) Thie list is used to provide archives accessible via the service.
+
+ - The [oldweb.today](http://oldweb.today/) project uses an earlier version of such a list: [archives.yaml](https://github.com/oldweb-today/netcapsule/blob/master/archives.yaml) This list is used to provide archives accessible via the service.
 
  - Wikipedia also maintains a [Listing of Web archiving initiatives](https://en.wikipedia.org/wiki/List_of_Web_archiving_initiatives)
 
