@@ -4,6 +4,8 @@ version: '1.0'
 webarchive_index:
   - 'webarchives/*.yaml'
 
-  # if a web archive advertises its api, it could be added here:
-  # - http://webarchive.example.com/wam.yaml
+# if a web archive advertises its api, it could be added here, ex:
+# - http://webarchive.example.com/wam.yaml
+
+# see WAM.md for more info
 

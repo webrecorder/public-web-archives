@@ -66,7 +66,7 @@ webarchives:
 
 A WAM format file should have at least the following keys:
 
-- `version` (required): The version of the WAM format, currently 1.0
+- `version`: The version of the WAM format (currently 1.0)
 
 - `webarchives`: The top-level key containing one or more web archives by unique id.
 
@@ -76,11 +76,13 @@ A WAM format file should have at least the following keys:
 
 ## Optional Keys
 
-- `collections`: If the web archive is a multi-collection archive, possibly specify the collections. See [Collections](#Collections) for more info.
+- `collections`: If the web archive is a multi-collection archive, possibly specify the collections. See [Collections](#collections) for more info.
 
 - `domain_hint`: if the web archive is primarily focused on a specific domain(s), such as certain top-level domains, or certain other domains, these can be added here as a list. This list is only a 'hint' and does not mean the web archive only has those domains, or doesn't have content from any other domains.
 
 - `apis`: Includes sections for apis that the web archive supports. More below.
+
+- `webarchive_index`: A list of where to find other WAM files, see [WAM Index](#wam-index)
 
 ## APIs
 
@@ -147,4 +149,28 @@ Based on this definition,
 `http://myarchive.example.com/coll_1/*/http://example.com/` and `http://myarchive.example.com/coll_2/*/http://example.com/` should both be valid calendar paths.
 
 
+# WAM Index
+
+It is also possible to define an index that indicates how to find other WAM files.
+
+The `webarchive_index` key provides a list of files, directories or urls to load:
+
+
+``` yaml
+
+    version: '1.0'
+
+    # all known web archives
+    webarchive_index:
+      - 'webarchives/*.yaml'
+      - 'some_other/myarchive.yaml'
+      - 'http://webarchive1.example.com/wam.yaml'
+      - 'http://webarchive2.example.com/wam.yaml'
+```
+
+All include WAM files should be considered the same as if they are all loaded under the same `webarchives` key.
+
+In this example, the urls might specify that the WAM file should be loaded directly from the web archive server.
+
+This pattern should allow web archives to serve their own WAM definition and contribute to a more distributed index.
 
