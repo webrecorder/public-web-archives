@@ -30,23 +30,13 @@ While there are many great archives out there, this format and directory is spec
 
 ### What other properties must archives have to be included?
 
-The intent is to list archives that present web content archived in their original form as much as possible, and/or archives that support established web archiving APIs for interoperability.
+Any web archive can be included in the listing, even if they do not support any of the established apis.
 
-However, archives which only present derived content, such as screenshots, can also be included on a case-by-case basis.
+For a list of currently supported apis, see the [WAM Spec](WAM.md)
 
-Currently, WAM supports specifies that the following common web archiving APIs, if supported by the web archive, should be listed:
+This directory should also not be seen as an exhaustive list of all web archive apis, as many may support, custom or specific apis.
 
-- `memento` -- Support for [Memento Protocol](https://tools.ietf.org/html/rfc7089), the appropriate endpoints should be included.
-
-- `cdx` -- Support for [CDX Server API v2](https://github.com/ikreymer/pywb/wiki/CDX-Server-API), [CDX Server API v1](https://github.com/internetarchive/wayback/blob/master/wayback-cdx-server/README.md)
-
-- `wayback` -- Support for 'Wayback Machine'-style replay, some variation of timestamp + url to access archived urls.
-
-It should still be possible to include public web archives, even if they do not support any of these established APIs.
-
-And of course, web archives are likely to support other, custom APIs, which are not listed in the file.
-
-If there is another API spec that should be included, feel free to submit it as a request and/or suggest how it might be included!
+If there is another api spec that should be included in this shared listing, feel free to submit it as a request and/or suggest how it might be included!
 
 
 ### Why make a new web archive directory?
@@ -100,20 +90,20 @@ For example, an archive could provide: ``http://myarchive.example.com/wam.yaml``
 If adding support for WAM to a web archive, please let us know or submit a PR to include this information.
 
 
-### What tools use this list?
+### What tools use this listing?
 
 None yet!
 
-But we hope that this will change, and would be happy to add any tools that make use of this list, directly or directly.
+But we hope that this will change, and would be happy to add any tools that make use of this format or listing, directly or directly.
 
 A future release of [pywb](https://github.com/ikreymer/pywb) will likely add support for reading WAM format files.
 
 [Webrecorder](https://webrecorder.io/) may also use this directory to provide users the ability to work with existing web archives.
 
 
-### Who created this list?
+### Who created this listing?
 
-This list originates with the [Webrecorder project](https://github.com/webrecorder/), which aims to promote distributed web archiving, encouraging anyone to create and run their own web archives. Having a formal Web Archive Manifest (WAM) as well as a public, distributed web archive directory aligns perfectly with this mission.
+This web archive listing and the [WAM](WAM.md) format originates with the [Webrecorder project](https://github.com/webrecorder/), which aims to promote distributed web archiving, encouraging anyone to create and run their own web archives. Having a formal Web Archive Manifest, as well as a public, distributed web archive directory aligns perfectly with this mission.
 
 You may note that Webrecorder is not yet included in this list! This is mostly due to to current technical limitations. Webrecorder allows users to create public and private collections, and there is not yet a way to access the content that users have made public through a single access point. This answer is here to remind us to solve this issue :)
 
