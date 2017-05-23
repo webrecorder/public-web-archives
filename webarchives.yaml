@@ -64,16 +64,34 @@
 #
 #     wayback:
 #             # add any fields that are to be added to every web archive, unless overwritten
-#
-#
-# Notes:
-#
-# the 'api_defaults' block is designed to include readability by inserting rewritten fields into every web archive
-# if the field is not included, the value from 'api_defaults' is used
-#
-# The 'replay_suffix' field is an example of such a field, as it is the same for most web archives that support
-# a Wayback Machine API, and only included if there are differences
 
+
+# format version for this file
+# note that the version referrs only to the semantics of this file, not to the contents
+# web archives can be added or removed without incrementing the version
+version: '0.9'
+
+
+# the 'defaults' block is designed to reduce duplication by speciying common
+# definitions which are inserted into other blocks using YAML node/anchor syntax
+# http://atechie.net/2009/07/merging-hashes-in-yaml-conf-files/
+#
+# blocks defined with '&' are achnors which can be inserted
+# into other blocks uusing '*' or extended using '<<'
+defaults:
+    wayback: &default_wayback
+        calendar_suffix: &default_calendar '*/'
+
+        replay_suffix: &default_replay
+            raw: '{timestamp}id_/{url}'
+            rewritten: '{timestamp}/{url}'
+
+    imf_replay: &imf_replay
+        raw: 'raw/{url}'
+        rewritten: '{timestamp}/{url}'
+
+
+# Known Web Archives 
 webarchives:
     # Archive-It All Collection Access
     ait:
@@ -89,6 +107,7 @@ webarchives:
                 query: 'https://wayback.archive-it.org/cdx?url={url}'
 
             wayback:
+                <<: *default_wayback
                 prefix: 'https://wayback.archive-it.org/all/'
 
 
@@ -102,6 +121,7 @@ webarchives:
                 query: 'https://wayback.archive-it.org/cdx?url={url}&filter=filename:ARCHIVEIT-({collection})-.*'
 
             wayback:
+                <<: *default_wayback
                 prefix: 'https://wayback.archive-it.org/{collection}/'
         
         # collection can be any number
@@ -124,6 +144,7 @@ webarchives:
 
         apis:
             wayback:
+                <<: *default_wayback
                 prefix: 'http://83.212.204.92:8080/wayback/'
 
 
@@ -137,6 +158,7 @@ webarchives:
                 timemap: 'http://web.archive.bibalex.org/web/timemap/link/'
 
             wayback:
+                <<: *default_wayback
                 prefix: 'http://web.archive.bibalex.org/web/'
 
                 # specify explicitly because raw uses 'im_' instead of 'id_'
@@ -155,6 +177,7 @@ webarchives:
                 timemap: 'http://langzeitarchivierung.bib-bvb.de/wayback/timemap/link/'
 
             wayback:
+                <<: *default_wayback
                 prefix: 'http://langzeitarchivierung.bib-bvb.de/wayback/'
 
 
@@ -164,6 +187,7 @@ webarchives:
 
         apis:
             wayback:
+                <<: *default_wayback
                 prefix: 'https://wayback.padicat.cat/wayback/'
 
         domain_hint:
@@ -187,6 +211,7 @@ webarchives:
 
         apis:
             wayback:
+                <<: *default_wayback
                 prefix: 'http://veebiarhiiv.digar.ee/a/'
 
         domain_hint:
@@ -203,12 +228,11 @@ webarchives:
                 timemap: 'http://collections.europachive.org/{collection}/'
 
             wayback:
+                <<: *default_wayback
                 prefix: 'http://collections.europarchive.org/{collection}/'
 
                 # override, different raw suffix
-                replay_suffix:
-                    raw: 'raw/{timestamp}/{url}'
-                    rewritten: '{timestamp}/{url}'
+                replay_suffix: *imf_replay
 
         # Collection data obtained from listing at: http://collection.europarchive.org/
         collections:
@@ -243,12 +267,13 @@ webarchives:
 
         apis:
             wayback:
+                <<: *default_wayback
                 prefix: 'http://www.collectionscanada.gc.ca/webarchives/'
 
                 # override, no 'raw' available
                 replay_suffix:
-                    raw: NULL
                     rewritten: '{timestamp}/{url}'
+                    raw: NULL
 
         domain_hint:
             - '.gc.ca'
@@ -277,6 +302,7 @@ webarchives:
                 query: 'https://web.archive.org/cdx/search/cdx?url={url}'
         
             wayback:
+                <<: *default_wayback
                 prefix: 'https://web.archive.org/web/'
 
 
@@ -290,6 +316,7 @@ webarchives:
                 timemap: 'http://wayback.vefsafn.is/wayback/timemap/link/'
 
             wayback:
+                <<: *default_wayback
                 prefix: 'http://wayback.vefsafn.is/wayback/'
 
         domain_hint:
@@ -306,6 +333,7 @@ webarchives:
                 timemap: 'http://webarchive.loc.gov/all/timemap/link/'
 
             wayback:
+                <<: *default_wayback
                 prefix: 'http://webarchive.loc.gov/all/'
 
 
@@ -315,6 +343,7 @@ webarchives:
 
         apis:
             wayback:
+                <<: *default_wayback
                 prefix: 'https://www.webharvest.gov/{collection}/'
 
         # Collection data obtained from listing at: https://www.webharvest.gov/
@@ -351,6 +380,7 @@ webarchives:
                 timemap: 'http://perma-archives.org/warc/timemap/*/'
 
             wayback:
+                <<: *default_wayback
                 prefix: 'http://perma-archives.org/warc/'
 
 
@@ -364,6 +394,7 @@ webarchives:
                 timemap: 'http://arquivo.pt/wayback/timemap/*/'
 
             wayback:
+                <<: *default_wayback
                 prefix: 'http://arquivo.pt/wayback/'
 
         domain_hint:
@@ -383,6 +414,7 @@ webarchives:
                 query: 'http://webenact.rhizome.org/all-cdx?url={url}'
 
             wayback:
+                <<: *default_wayback
                 prefix: 'http://webenact.rhizome.org/all/'
 
 
@@ -392,6 +424,7 @@ webarchives:
 
         apis:
             wayback:
+                <<: *default_wayback
                 prefix: 'http://eresources.nlb.gov.sg/webarchives/wayback/'
 
         domain_hint:
@@ -404,6 +437,7 @@ webarchives:
 
         apis:
             wayback:
+                <<: *default_wayback
                 prefix: 'http://nukrobi2.nuk.uni-lj.si:8080/wayback/'
 
         domain_hint:
@@ -420,6 +454,7 @@ webarchives:
                 timemap: 'https://swap.stanford.edu/timemap/link/'
 
             wayback:
+                <<: *default_wayback
                 prefix: 'https://swap.stanford.edu/'
 
 
@@ -433,6 +468,7 @@ webarchives:
                 timemap: 'https://webarchive.parliament.uk/timemap/*/'
 
             wayback:
+                <<: *default_wayback
                 prefix: 'http://webarchive.parliament.uk/'
 
 
@@ -446,12 +482,11 @@ webarchives:
                 timemap: 'http://webarchive.proni.gov.uk/timemap/'
 
             wayback:
+                <<: *default_wayback
                 prefix: 'http://webarchive.proni.gov.uk/'
 
                 # override, different raw suffix
-                replay_suffix:
-                    raw: 'raw/{timestamp}/{url}'
-                    rewritten: '{timestamp}/{url}'
+                replay_suffix: *imf_replay
 
 
     uk_natarchives:
@@ -464,12 +499,11 @@ webarchives:
                 timemap: 'http://webarchive.nationalarchives.gov.uk/timemap/'
 
             wayback:
+                <<: *default_wayback
                 prefix: 'http://webarchive.nationalarchives.gov.uk/'
 
                 # override, different raw suffix
-                replay_suffix:
-                    raw: 'raw/{timestamp}/{url}'
-                    rewritten: '{timestamp}/{url}'
+                replay_suffix: *imf_replay
 
 
     uk_wa:
@@ -482,6 +516,7 @@ webarchives:
                 timemap: 'https://www.webarchive.org.uk/wayback/archive/timemap/link/'
 
             wayback:
+                <<: *default_wayback
                 prefix: 'https://www.webarchive.org.uk/wayback/archive/'
 
         domain_hint:
@@ -505,23 +540,6 @@ webarchives:
                 timemap: 'https://digital.library.yorku.ca/wayback/timemap/link/'
 
             wayback:
+                <<: *default_wayback
                 prefix: 'https://digital.library.yorku.ca/wayback/'
-
-
-# rewritten properties added to api block, if field unset
-# eg. 'replay_suffix' only added if no replay_suffix present in definition block
-api_defaults:
-    wayback:
-        replay_suffix:
-            raw: '{timestamp}id_/{url}'
-            rewritten: '{timestamp}/{url}'
-
-        calendar_suffix: '*/'
-
-
-# format version for this file
-# note that the version referrs only to the semantics of this file, not to the contents
-# web archives can be added or removed without incrementing the version
-version: '0.8'
-
 
