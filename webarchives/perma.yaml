@@ -1,0 +1,21 @@
+version: '1.0'
+
+webarchives:
+  perma:
+    name: 'Perma.cc'
+    about: 'https://perma.cc/'
+
+    apis:
+      memento:
+        timegate: 'http://perma-archives.org/warc/timegate/'
+        timemap: 'http://perma-archives.org/warc/timemap/*/'
+
+      wayback:
+        # calendar not supported
+        calendar: NULL
+        replay:
+          rewritten: 'http://perma-archives.org/warc/{timestamp}/{url}'
+          raw: 'http://perma-archives.org/warc/{timestamp}id_/{url}'
+
+
+

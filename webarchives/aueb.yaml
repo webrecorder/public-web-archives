@@ -1,0 +1,15 @@
+version: '1.0'
+
+webarchives:
+  aueb:
+    name: 'Web Archive of Athens University'
+    about: 'http://archive.aueb.gr/'
+
+    apis:
+      wayback:
+        calendar: 'http://83.212.204.92:8080/wayback/*/'
+        replay:
+          rewritten: 'http://83.212.204.92:8080/wayback/{timestamp}/{url}'
+          raw: 'http://83.212.204.92:8080/wayback/{timestamp}id_/{url}'
+
+

@@ -1,0 +1,20 @@
+version: '1.0'
+
+webarchives:
+  proni:
+    name: 'Public Record Office of Northern Ireland'
+    about: 'http://webarchive.proni.gov.uk/'
+
+    apis:
+      memento:
+        timegate: 'http://webarchive.proni.gov.uk/timegate/'
+        timemap: 'http://webarchive.proni.gov.uk/timemap/'
+
+      wayback:
+        calendar: 'http://webarchive.proni.gov.uk/*/'
+
+        replay:
+          rewritten: 'http://webarchive.proni.gov.uk/{timestamp}/{url}'
+          raw: 'http://webarchive.proni.gov.uk/raw/{timestamp}/{url}'
+
+

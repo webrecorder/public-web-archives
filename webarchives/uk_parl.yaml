@@ -1,0 +1,19 @@
+version: '1.0'
+
+webarchives:
+  uk_parl:
+    name: 'UK Parliament Web Archive'
+    about: 'http://webarchive.parliament.uk/'
+
+    apis:
+      memento:
+        timegate: 'https://webarchive.parliament.uk/'
+        timemap: 'https://webarchive.parliament.uk/timemap/*/'
+
+      wayback:
+        calendar: 'http://webarchive.parliament.uk/*/'
+        replay:
+          rewritten: 'http://webarchive.parliament.uk/{timestamp}/{url}'
+          raw: 'http://webarchive.parliament.uk/{timestamp}id_/{url}'
+
+

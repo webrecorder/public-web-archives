@@ -1,0 +1,44 @@
+version: '1.0'
+
+webarchives:
+  eu_wa_coll:
+    name: 'European Web Archive Collections'
+    about: 'http://collection.europarchive.org/'
+
+    # Collection data obtained from listing at: http://collection.europarchive.org/
+    collections:
+      - id: 'legislatives_france_2012'
+        name: 'Elections Legislatives France 2012'
+
+      - id: 'presidentielles_france_2012'
+        name: 'Elections Presidentielles France 2012'
+
+      - id: 'haeu'
+        name: 'European Institutions – OP and HAEU'
+
+      - id: 'cern'
+        name: 'European Organization for Nuclear Research (Switzerland) - CERN'
+
+      - id: 'nli'
+        name: 'National Library of Ireland - NLI'
+
+      - id: 'nrs'
+        name: 'National Records of Scotland'
+
+      - id: 'proni'
+        name: 'Public Record Office of Northern Ireland - PRONI'
+
+      - id: 'tna'
+        name: 'The National Archives - TNA'
+
+    apis:
+      memento:
+        timegate: 'http://collections.europarchive.org/{collection}/'
+        timemap: 'http://collections.europachive.org/{collection}/'
+
+      wayback:
+        calendar: 'http://collections.europarchive.org/{collection}/*/'
+        replay:
+          rewritten: 'http://collections.europarchive.org/{collection}/{timestamp}/{url}'
+          raw: 'http://collections.europarchive.org/{collection}/raw/{timestamp}/{url}'
+

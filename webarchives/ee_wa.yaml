@@ -1,0 +1,18 @@
+version: '1.0'
+
+webarchives:
+  ee_wa:
+    name: 'Estonian Web Archive'
+    about: 'http://veebiarhiiv.digar.ee/'
+
+    domain_hint:
+      - '.ee'
+
+    apis:
+      wayback:
+        calendar: 'http://veebiarhiiv.digar.ee/a/*/'
+        replay:
+          rewritten: 'http://veebiarhiiv.digar.ee/a/{timestamp}/{url}'
+          raw: 'http://veebiarhiiv.digar.ee/a/{timestamp}id_/{url}'
+
+

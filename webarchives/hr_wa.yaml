@@ -1,0 +1,13 @@
+version: '1.0'
+
+webarchives:
+  hr_wa:
+    name: 'Croatian Web Archive'
+    about: 'http://haw.nsk.hr/'
+
+    #APIS unknown currently!
+
+    domain_hint:
+      - '.hr'
+
+

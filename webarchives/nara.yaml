@@ -1,0 +1,36 @@
+version: '1.0'
+
+webarchives:
+  nara:
+    name: 'National Archives and Record Administartion'
+    about: 'https://webharvest.gov/'
+
+    # Collection data obtained from listing at: https://www.webharvest.gov/
+    collections:
+      - id: 'peth04'
+        name: 'Presidential Term (2004)'
+
+      - id: 'congress109th'
+        name: '109th Congress (2006)'
+
+      - id: 'congress110th'
+        name: '110th Congress (2008)'
+
+      - id: 'congress111th'
+        name: '111th Congress (2010)'
+
+      - id: 'congress112th'
+        name: '112th Congress (2012)'
+
+      - id: 'congress113th'
+        name: '113th Congress (2014)'
+
+      - id: 'congress114th'
+        name: '114th Congress (2016)'
+
+    apis:
+      calendar: 'https://www.webharvest.gov/{collection}/*/'
+      replay:
+        rewritten: 'https://www.webharvest.gov/{collection}/{timestamp}/{url}'
+        raw: 'https://www.webharvest.gov/{collection}/{timestamp}id_/{url}'
+

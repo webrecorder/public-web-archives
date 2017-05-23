@@ -1,0 +1,18 @@
+version: '1.0'
+
+webarchives:
+  gc_wa:
+    name: 'Government of Canada Web Archive'
+    about: 'http://www.collectionscanada.gc.ca/webarchives/'
+
+    domain_hint:
+      - '.gc.ca'
+
+    apis:
+      wayback:
+        calendar: 'http://www.collectionscanada.gc.ca/webarchives/*/'
+
+        replay:
+          rewritten: 'http://www.collectionscanada.gc.ca/webarchives/{timestamp}/{url}'
+          raw: NULL
+

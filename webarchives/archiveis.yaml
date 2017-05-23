@@ -1,0 +1,13 @@
+version: '1.0'
+
+webarchives:
+  archiveis:
+    name: 'archive.is'
+    about: 'http://archive.is/'
+
+    apis:
+      memento:
+        timegate: 'http://archive.is/timegate/'
+        timemap:  'http://archive.is/timemap/'
+
+

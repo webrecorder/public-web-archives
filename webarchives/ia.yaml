@@ -1,0 +1,21 @@
+version: '1.0'
+
+webarchives:
+  ia:
+    name: 'Internet Archive'
+    about: 'https://archive.org/web/'
+        
+    apis:
+      memento:
+        timegate: 'https://web.archive.org/web/'
+        timemap: 'https://web.archive.org/web/timemap/link/'
+
+      cdx:
+        query: 'https://web.archive.org/cdx/search/cdx?url={url}'
+        
+      wayback:
+        calendar: 'https://web.archive.org/web/*/'
+        replay:
+          rewritten: 'https://web.archive.org/web/{timestamp}/{url}'
+          raw: 'https://web.archive.org/web/{timestamp}id_/{url}'
+

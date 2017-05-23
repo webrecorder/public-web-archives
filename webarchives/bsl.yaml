@@ -1,0 +1,19 @@
+version: '1.0'
+
+webarchives:
+  bsl:
+    name: 'Bavarian State Library'
+    about: 'http://langzeitarchivierung.bib-bvb.de/'
+
+    apis:
+      memento:
+        timegate: 'http://langzeitarchivierung.bib-bvb.de/wayback/'
+        timemap: 'http://langzeitarchivierung.bib-bvb.de/wayback/timemap/link/'
+
+      wayback:
+        calendar: 'http://langzeitarchivierung.bib-bvb.de/wayback/*/'
+        replay:
+          rewritten: 'http://langzeitarchivierung.bib-bvb.de/wayback/{timestamp}/{url}'
+          raw: 'http://langzeitarchivierung.bib-bvb.de/wayback/{timestamp}id_/{url}'
+
+

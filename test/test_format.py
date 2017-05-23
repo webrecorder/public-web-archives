@@ -1,18 +1,38 @@
 import yaml
 import os
 import pprint
+import sys
+import re
+import pytest
+import glob
 
-def test_format(filename):
+
+def load_targets(webarchives='webarchives.yaml'):
+    dir_name = os.path.join(os.path.dirname(os.path.realpath(__file__)),
+                            '..')
+
+    with open(os.path.join(dir_name, webarchives)) as fh:
+        config = yaml.load(fh.read())
+        for pattern in config['webarchive_index']:
+            return glob.glob(os.path.join(dir_name, pattern))
+
+
+@pytest.fixture(params=load_targets())
+def filename(request):
+    return request.param
+
+
+def test_wam_format(filename):
     """ Ensure the yaml file is valid
     and all required fields are present in each api block
     """
 
-    fullpath = os.path.join(os.path.dirname(os.path.realpath(__file__)),
-                            '..',
-                            filename)
+    print('Checking ' + filename)
 
-    with open(fullpath, 'rb') as fh:
+    with open(filename, 'rb') as fh:
         config = yaml.load(fh.read())
+
+    assert(config['version'] == '1.0')
 
     for name, webarchive in config['webarchives'].items():
         assert(name)
@@ -23,6 +43,11 @@ def test_format(filename):
         if not apis:
             continue
 
+        has_collections = ('collections' in webarchive)
+        if has_collections:
+            # must be a list or a regex
+            assert(isinstance(webarchive['collections'], list) or re.compile(webarchive['collections']))
+
         if 'cdx' in apis:
             assert(apis['cdx']['query'])
 
@@ -31,24 +56,16 @@ def test_format(filename):
             assert(apis['memento']['timemap'])
 
         if 'wayback' in apis:
-            assert(apis['wayback']['prefix'])
-            assert(apis['wayback']['calendar_suffix'])
-            assert(apis['wayback']['replay_suffix'])
+            assert(apis['wayback']['replay'])
 
-            assert('raw' in apis['wayback']['replay_suffix'])
-            assert('rewritten' in apis['wayback']['replay_suffix'])
+            for mode in ['raw', 'rewritten']:
+                assert(mode in apis['wayback']['replay'])
 
-    #pprint.pprint(config['webarchives'])
+                if apis['wayback']['replay'][mode] is None:
+                    continue
 
-    print('{0} is valid'.format(filename))
+                assert('{url}' in apis['wayback']['replay'][mode])
+                assert('{timestamp}' in apis['wayback']['replay'][mode])
 
-if __name__ == "__main__":
-    filename = 'webarchives.yaml'
-
-    try:
-        test_format(filename)
-    except Exception as e:
-        import traceback
-        traceback.print_exc()
-        print('{0} is not valid, see error above!'.format(filename))
+                assert(('{collection}' in apis['wayback']['replay'][mode]) == has_collections)
 

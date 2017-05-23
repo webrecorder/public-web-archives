@@ -1,0 +1,20 @@
+version: '1.0'
+
+webarchives:
+  loc:
+    name: 'Library of Congress'
+    about: 'http://loc.gov/websites/'
+
+    apis:
+      memento:
+        timegate: 'http://webarchive.loc.gov/all/'
+        timemap: 'http://webarchive.loc.gov/all/timemap/link/'
+
+      wayback:
+        calendar: 'http://webarchive.loc.gov/all/*/'
+        replay:
+          rewritten: 'http://webarchive.loc.gov/all/{timestamp}/{url}'
+          raw: 'http://webarchive.loc.gov/all/{timestamp}id_/{url}'
+          
+
+

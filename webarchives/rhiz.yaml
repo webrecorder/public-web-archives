@@ -1,0 +1,21 @@
+version: '1.0'
+
+webarchives:
+  rhiz:
+    name: 'Rhizome Webenact'
+    about: 'http://webenact.rhizome.org/'
+
+    apis:
+      memento:
+        timegate: 'http://webenact.rhizome.org/all/'
+        timemap: 'http://webenact.rhizome.org/all/timemap/*/'
+
+      cdx:
+        query: 'http://webenact.rhizome.org/all-cdx?url={url}'
+
+      wayback:
+        calendar: 'http://webenact.rhizome.org/all/*/'
+        replay:
+          rewritten: 'http://webenact.rhizome.org/all/{timestamp}/{url}'
+          raw: 'http://webenact.rhizome.org/all/{timestamp}id_/{url}'
+

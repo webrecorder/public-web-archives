@@ -1,0 +1,17 @@
+version: '1.0'
+
+webarchives:
+  si_wa:
+    name: 'Slovenian National Library Web Archive'
+    about: 'http://arhiv.nuk.uni-lj.si/o-arhivu'
+
+    domain_hint:
+      - '.si'
+
+    apis:
+      wayback:
+        calendar: 'http://nukrobi2.nuk.uni-lj.si:8080/wayback//*/'
+        replay:
+          rewritten: 'http://nukrobi2.nuk.uni-lj.si:8080/wayback/{timestamp}/{url}'
+          raw: 'http://nukrobi2.nuk.uni-lj.si:8080/wayback/{timestamp}id_/{url}'
+

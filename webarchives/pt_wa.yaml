@@ -1,0 +1,21 @@
+version: '1.0'
+
+webarchives:
+  pt_wa:
+    name: 'Portuguese Web Archive'
+    about: 'http://arquivo.pt/'
+
+    domain_hint:
+      - '.pt'
+
+    apis:
+      memento:
+        timegate: 'http://arquivo.pt/wayback/'
+        timemap: 'http://arquivo.pt/wayback/timemap/*/'
+
+      wayback:
+        calendar: 'http://arquivo.pt/wayback/*/'
+        replay:
+          rewritten: 'http://arquivo.pt/wayback/{timestamp}/{url}'
+          raw: 'http://arquivo.pt/wayback/{timestamp}id_/{url}'
+

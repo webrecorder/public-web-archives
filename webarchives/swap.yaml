@@ -1,0 +1,19 @@
+version: '1.0'
+
+webarchives:
+  swap:
+    name: 'Stanford Web Archive'
+    about: 'https://swap.stanford.edu/'
+
+    apis:
+      memento:
+        timegate: 'https://swap.stanford.edu/'
+        timemap: 'https://swap.stanford.edu/timemap/link/'
+
+      wayback:
+        calendar: 'https://swap.stanford.edu/*/'
+        replay:
+          rewritten: 'https://swap.stanford.edu/{timestamp}/{url}'
+          raw: 'https://swap.stanford.edu/{timestamp}id_/{url}'
+
+

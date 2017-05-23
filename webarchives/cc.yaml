@@ -1,0 +1,15 @@
+version: '1.0'
+
+webarchives:
+  cc:
+    name: 'CommonCrawl'
+    about: 'http://commoncrawl.org'
+
+    # Full list of collections available at: http://index.commoncrawl.org/
+    collections: 'CC-MAIN-[\d]{4}-[\d]{2}-index'
+
+    apis:
+      cdx:
+        query: 'http://index.commoncrawl.org/{collection}?url={url}'
+
+

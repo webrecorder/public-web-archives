@@ -1,0 +1,18 @@
+version: '1.0'
+
+webarchives:
+  uk_na:
+    name: 'UK National Archives'
+    about: 'http://www.nationalarchives.gov.uk/webarchive/'
+
+    apis:
+      memento:
+        timegate: 'http://webarchive.nationalarchives.gov.uk/timegate/'
+        timemap: 'http://webarchive.nationalarchives.gov.uk/timemap/'
+
+      wayback:
+        calendar: 'http://webarchive.nationalarchives.gov.uk/*/'
+        replay:
+          rewritten: 'http://webarchive.nationalarchives.gov.uk/{timestamp}/{url}'
+          raw: 'http://webarchive.nationalarchives.gov.uk/raw/{timestamp}/{url}'
+

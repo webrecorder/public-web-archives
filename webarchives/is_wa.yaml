@@ -1,0 +1,21 @@
+version: '1.0'
+
+webarchives:
+  is_wa:
+    name: 'Icelandic Web Archive'
+    about: 'http://vefsafn.is/'
+
+    domain_hint:
+      - '.is'
+
+    apis:
+      memento:
+        timegate: 'http://wayback.vefsafn.is/wayback/'
+        timemap: 'http://wayback.vefsafn.is/wayback/timemap/link/'
+
+      wayback:
+        calendar: 'http://wayback.vefsafn.is/wayback/*/'
+        replay:
+          rewritten: 'http://wayback.vefsafn.is/wayback/{timestamp}/{url}'
+          raw: 'http://wayback.vefsafn.is/wayback/{timestamp}id_/{url}'
+

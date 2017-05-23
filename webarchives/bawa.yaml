@@ -1,0 +1,20 @@
+version: '1.0'
+
+webarchives:
+  bawa:
+    name: 'Bibliotheca Alexandrina Web Archive'
+    about: 'http://www.bibalex.org/isis/frontend/archive/archive_web.aspx'
+
+    apis:
+      memento:
+        timegate: 'http://web.archive.bibalex.org/web/'
+        timemap: 'http://web.archive.bibalex.org/web/timemap/link/'
+
+      wayback:
+        calendar: 'http://web.archive.bibalex.org/web/*/'
+        replay:
+          rewritten: 'http://web.archive.bibalex.org/web/{timestamp}/{url}'
+          # id_ not supported, use im_ instead of id_
+          raw: 'http://web.archive.bibalex.org/web/{timestamp}im_/{url}'
+
+

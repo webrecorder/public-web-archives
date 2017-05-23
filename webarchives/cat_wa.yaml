@@ -1,0 +1,18 @@
+version: '1.0'
+
+webarchives:
+  cat_wa:
+    name: 'Catalonian Web Archive'
+    about: 'https://www.padicat.cat/ca'
+
+    domain_hint:
+      - '.cat'
+
+    apis:
+      wayback:
+        calendar: 'https://wayback.padicat.cat/wayback/*/'
+        replay:
+          rewritten: 'https://wayback.padicat.cat/wayback/{timestamp}/{url}'
+          raw: 'https://wayback.padicat.cat/wayback/{timestamp}id_/{url}'
+
+

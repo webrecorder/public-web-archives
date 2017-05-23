@@ -1,0 +1,42 @@
+version: '1.0'
+
+webarchives:
+  # Archive-It All Collection Access
+  ait:
+    name: 'Archive-It'
+    about: 'https://archive-it.org/'
+
+    apis:
+      memento:
+        timegate: 'https://wayback.archive-it.org/all/'
+        timemap: 'https://wayback.archive-it.org/all/timemap/link/'
+
+        cdx:
+          query: 'https://wayback.archive-it.org/cdx?url={url}'
+
+        wayback:
+          calendar: 'https://wayback.archive-it.org/all/*/'
+          replay:
+            rewritten: 'https://wayback.archive-it.org/all/{timestamp}/{url}'
+            raw: 'https://wayback.archive-it.org/all/{timestamp}id_/{url}'
+
+
+  # Archive-It Per-Collection Access
+  ait_coll:
+    name: 'Archive-It Collections'
+    about: 'https://archive-it.org/'
+
+    # collection can be any number
+    collections: '\d+'
+
+    apis:
+      cdx:
+        query: 'https://wayback.archive-it.org/cdx?url={url}&filter=filename:ARCHIVEIT-({collection})-.*'
+
+        wayback:
+          calendar: 'https://wayback.archive-it.org/{collection}/*/'
+          replay:
+            rewritten: 'https://wayback.archive-it.org/{collection}/{timestamp}/{url}'
+            raw: 'https://wayback.archive-it.org/{collection}/{timestamp}id_/{url}'
+
+

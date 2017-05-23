@@ -1,0 +1,18 @@
+version: '1.0'
+
+webarchives:
+  yorku:
+    name: 'York University Archive'
+    about: 'https://digital.library.yorku.ca/wayback/'
+
+    apis:
+      memento:
+        timegate: 'https://digital.library.yorku.ca/wayback/'
+        timemap: 'https://digital.library.yorku.ca/wayback/timemap/link/'
+
+      wayback:
+        calendar: 'https://digital.library.yorku.ca/wayback/*/'
+        replay:
+          rewritten: 'https://digital.library.yorku.ca/wayback/{timestamp}/{url}'
+          raw: 'https://digital.library.yorku.ca/wayback/{timestamp}id_/{url}'
+

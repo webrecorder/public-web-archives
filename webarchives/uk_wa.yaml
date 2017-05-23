@@ -1,0 +1,21 @@
+version: '1.0'
+
+webarchives:
+  uk_wa:
+    name: 'UK British Library Web Archive'
+    about: 'http://www.webarchive.org.uk/ukwa/'
+
+    domain_hint:
+      - '.uk'
+
+    apis:
+      memento:
+        timegate: 'https://www.webarchive.org.uk/wayback/archive/'
+        timemap: 'https://www.webarchive.org.uk/wayback/archive/timemap/link/'
+
+        wayback:
+          calendar: 'https://www.webarchive.org.uk/wayback/archive/*/'
+          replay:
+            rewritten: 'https://www.webarchive.org.uk/wayback/archive/{timestamp}/{url}'
+            raw: 'https://www.webarchive.org.uk/wayback/archive/{timestamp}id_/{url}'
+

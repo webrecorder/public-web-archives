@@ -1,0 +1,18 @@
+version: '1.0'
+
+webarchives:
+  sg_wa:
+    name: 'Web Archive Singapore'
+    about: 'http://eresources.nlb.gov.sg/webarchives/'
+
+    domain_hint:
+      - '.sg'
+
+    apis:
+      wayback:
+        calendar: 'http://eresources.nlb.gov.sg/webarchives/wayback/*/'
+        replay:
+          rewritten: 'http://eresources.nlb.gov.sg/webarchives/wayback/{timestamp}/{url}'
+          raw: 'http://eresources.nlb.gov.sg/webarchives/wayback/{timestamp}id_/{url}'
+
+

@@ -1,0 +1,9 @@
+version: '1.0'
+
+webarchives:
+  webcite:
+    name: 'WebCite'
+    about: 'http://www.webcitation.org/'
+
+    #APIS unknown
+
