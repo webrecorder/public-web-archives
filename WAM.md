@@ -2,6 +2,8 @@
 
 WAM is simple schema for a YAML file (and therefore also for JSON) to specify key aspects of a web archive.
 
+## Sample definition
+
 A WAM file contains the following structure:
 
 ```  yaml
@@ -21,10 +23,10 @@ webarchives:
 
     # if the collection list is known:
     collections:
-      - id: <coll_id_1>
+      - id: coll_1
         name: 'Collection 1 Description'
 
-      - id: <coll_id_2>
+      - id: coll_2
         name: 'Collection 2 Description'
                ...
 
@@ -59,8 +61,88 @@ webarchives:
           raw: http://webarchive.example.com/path/{timestamp}id_/{url}      
 ```
 
-The main keys in the WAM format are as follows:
+
+## Required Keys
+
+A WAM format file should have at least the following keys:
 
 - `version` (required): The version of the WAM format, currently 1.0 
 
-- `webarchives`: The top-level key containing all web archives by unique id. At least one web archive should be included.
+- `webarchives`: The top-level key containing one or more web archives by unique id.
+
+- `name`: Human readable name of the web archive.
+
+- `about`: A URL to a page about the web archive.
+
+## Optional Keys
+
+- `collections`: If the web archive is a multi-collection archive, possibly specify the collections. See [Collections](#Collections) for more info.
+
+- `domain_hint`: if the web archive is primarily focused on a specific domain(s), such as certain top-level domains, or certain other domains, these can be added here as a list. This list is only a 'hint' and does not mean the web archive only has those domains, or doesn't have content from any other domains.
+
+- `apis`: Includes sections for apis that the web archive supports. More below.
+
+## APIs
+
+Currently supported apis are as follows. Each api has subkeys pointing to urls that are part of the api.
+
+### Memento
+
+The `memento` key should be included if the web archive implements support for the [Memento Protocol](https://tools.ietf.org/html/rfc7089).
+
+The definition object should have a key for the `timegate` and `timemap`, pointing to the Memento TimeGate and TimeMap urls for the web archive.
+
+### CDX Server
+
+The `cdx` key should be included if the web archive supports either [IA CDX Server](https://github.com/ikreymer/pywb/wiki/CDX-Server-API) or the [pywb CDX Server API](https://github.com/internetarchive/wayback/blob/master/wayback-cdx-server/README.md) in some form. Both apis are very similar and are identical for majority of use cases.
+
+The definition object should have a single key `query`, pointing to the CDX server endpoint.
+
+### Wayback
+
+The `wayback` key should be included if the web archive supports the "Wayback Machine"-style web archive access, using a combination of timestamp and url. This key should be included if the web archive is running some version of wayback machine, or wayback machine-like service.
+
+Generally, such as service will have an HTML calendar page, listing captures of a singe url over time. This page should be listed under the `calendar` key, if available. The replay endpoints for the wayback machine service should be included under the `replay` key.
+
+- If the service only provides content in any way modified/rewritten, it should be listed under `rewritten` key.
+- If the web archive also provides access to raw web content (even better!) it should be included in the `raw` key
+
+### Url Templates
+
+Special url template variables, `{url}` and `{timestamp}` may be included in any api url. These represent the url and timestamp and indicate how these are to be inserted into the apis. These variables are optional and if they are omitted, established conventions for passing url and timestamp should be used.
+
+## Collections
+
+If a web archive supports collections, a list of collections may be included in the `collections` key.
+
+If it is not possible to list all the collections, the `collections` key should be a regular expression that indicates possible values
+that are valid collection ids.
+
+If including a full list of collections, it should be a list of objects that contain a `id` and `name` field.
+
+Any api url may contain an additional `{collection}` template variable if and only if a `collections` key is defined.
+
+The `id` values from the collection list should then be subsitutable to get valid collection urls, eg:
+
+``` yaml
+    collections:
+      - id: coll_1
+        name: 'Collection 1 Description'
+
+      - id: coll_2
+        name: 'Collection 2 Description'
+        
+    api:
+      wayback:
+        calendar: http://myarchive.example.com/{collection}/*/{url}
+        replay:
+          rewritten: http://myarchive.example.com/{collection}/{timestamp}/{url}
+          raw: http://myarchive.example.com/{collection}/{timestamp}id_/{url}
+```
+
+Based on this definition,
+
+`http://myarchive.example.com/coll_1/*/http://example.com/` and `http://myarchive.example.com/coll_2/*/http://example.com/` should both be valid calendar paths.
+
+
+
