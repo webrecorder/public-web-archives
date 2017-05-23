@@ -124,7 +124,7 @@ If including a full list of collections, it should be a list of objects that con
 
 Any api url may contain an additional `{collection}` template variable if and only if a `collections` key is defined.
 
-The `id` values from the collection list should then be subsitutable to get valid collection urls, eg:
+The `id` values from the collection list should then be substitutable to get valid collection urls, eg:
 
 ``` yaml
     collections:
