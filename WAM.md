@@ -102,10 +102,12 @@ The definition object should have a single key `query`, pointing to the CDX serv
 
 The `wayback` key should be included if the web archive supports the "Wayback Machine"-style web archive access, using a combination of timestamp and url. This key should be included if the web archive is running some version of wayback machine, or wayback machine-like service.
 
-Generally, such as service will have an HTML calendar page, listing captures of a singe url over time. This page should be listed under the `calendar` key, if available. The replay endpoints for the wayback machine service should be included under the `replay` key.
+Generally, such as service will have an HTML calendar page, listing captures of a singe url over time. This page should be listed under the `calendar` key, if available.
 
-- If the service only provides content in any way modified/rewritten, it should be listed under `rewritten` key.
-- If the web archive also provides access to raw web content (even better!) it should be included in the `raw` key
+The replay endpoints for the wayback machine service should be included under the `replay` key.
+
+- If the web archive provides content in any way modified/rewritten, it should be listed under `rewritten` key.
+- If the web archive provides access to raw web content (even better!) it should be included in the `raw` key
 
 ### Url Templates
 
