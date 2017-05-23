@@ -149,7 +149,7 @@ Based on this definition,
 `http://myarchive.example.com/coll_1/*/http://example.com/` and `http://myarchive.example.com/coll_2/*/http://example.com/` should both be valid calendar paths.
 
 
-# WAM Index
+## WAM Index
 
 It is also possible to define an index that indicates how to find other WAM files.
 
@@ -168,7 +168,7 @@ The `webarchive_index` key provides a list of files, directories or urls to load
       - 'http://webarchive2.example.com/wam.yaml'
 ```
 
-All include WAM files should be considered the same as if they are all loaded under the same `webarchives` key.
+Web archives manifests loaded from multiple files should be considered the same as if they were all loaded under a single `webarchives` key in a single file.
 
 In this example, the urls might specify that the WAM file should be loaded directly from the web archive server.
 
