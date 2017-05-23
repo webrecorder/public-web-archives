@@ -2,29 +2,30 @@
 
 The purpose of this repository is an experiment in creating a distributed listing of web archives.
 
-The list is intended to be easily readable by humans and also in a format that can be processed by new and existing software tools.
+To accomplish, a new format, the [Web Archive Manifest](WAM.md) is introduced to describe web archives and what properties and APIs they support. The format is designed to be readable by humans and processed by new and existing software tools.
  
-The goal is to highlight, and help promote the sizable (and growing list!) of publicly accessible web archives all over the world, in a distributed and democratic way. A lot of people may be familiar with "Wayback Machine", but there are actually many wayback machines all over the world. Let's make them more widely known and accessible!
+The goal is to highlight, and help promote the sizable (and growing list!) of publicly accessible web archives all over the world, in a distributed and democratic way.
 
+A lot of people may be familiar with "Wayback Machine", but there are actually many wayback machines all over the world. Let's make them more widely known and accessible!
 
-### What format is the list?
+### How are the web archives listed? How can new archives be included?
 
-The listing is presented in a single file: [webarchives.yaml](webarchives.yaml)
+There is a YAML file following the [WAM spec](WAM.md) for each web archive in the [webarchives](webarchives/) directory.
 
-YAML was chosen as it strikes a good balance between readability and being easily processable by a wide variety of tools.
+YAML was chosen as it strikes a good balance between readability and is easily processable by a wide variety of tools in a variety of languages.
 
-The file contains entries for each known web archive and what common APIs the web archive supports.
+The intent is for the format to be a 'living standard' that may adapt as needed as web archives evolve.
 
-The hope is that the format would be mostly self-documenting and/or documented directly in the yaml file. The intent is for the format to be a 'living standard' that may adapt as needed.
+There is also an [index](webarchives.yaml) which specifies to include all files in the directory.
 
-For more specifics about the current format, please consult the latest version of the file.
+To add a new web archive, simply add a new .yaml file in this directory.
 
 
 ### What archives are included in the list?
 
-This is list is specifically for [web archives](https://en.wikipedia.org/wiki/Web_archiving) which preserve and provide web content and make it publicly accessible.
+This listing is specifically for [web archives](https://en.wikipedia.org/wiki/Web_archiving) which preserve and provide web content and make it publicly accessible.
 
-While there are many great archives out there, the list is specifically limited to web archives.
+While there are many great archives out there, this format and directory is specifically limited to web archives.
 
 
 ### What other properties must archives have to be included?
@@ -33,7 +34,7 @@ The intent is to list archives that present web content archived in their origin
 
 However, archives which only present derived content, such as screenshots, can also be included on a case-by-case basis.
 
-Currently, endpoints for the following common web archiving APIs, if supported by the web archive, are included in the list:
+Currently, WAM supports specifies that the following common web archiving APIs, if supported by the web archive, should be listed:
 
 - `memento` -- Support for [Memento Protocol](https://tools.ietf.org/html/rfc7089), the appropriate endpoints should be included.
 
@@ -48,15 +49,15 @@ And of course, web archives are likely to support other, custom APIs, which are 
 If there is another API spec that should be included, feel free to submit it as a request and/or suggest how it might be included!
 
 
-### Why make such a list here?
+### Why make a new web archive directory?
 
-The intent of this list is to be:
+The intent of this directory is to be:
 
 - open-source and distributed (git is the perfect place for it!)
 - independent from any specific product, service or protocol.
 - presented in a human and machine-readable format
 
-The list is intended to encourage interoperability and interconnectedness between different web archives.
+This directory and WAM format are intended to encourage interoperability and interconnectedness between different web archives.
 
 
 ### Aren't there other archives lists out there already?
@@ -79,13 +80,24 @@ If there are other such lists, feel free to let us know or submit a pull request
 
 Anyone can contribute! We definitely encourage contributions to this repo to make it a truly distributed project:
 
-- If you have a web archive not on the list, and you would like it to be included, feel free to make a PR adding the archive.
+- If you have a web archive not in the directory, and you would like it to be included, feel free to make a PR adding the archive to a new yaml file.
 
-- If you have a web archive on the list, and you would like to remove it, feel free to make a PR and a brief note requesting the removal.
+- If you have a web archive that is included, and you would like to remove it, feel free to make a PR and a brief note requesting the removal.
 
 - If you have a question about how to include a new type of web archive, please open an issue to discuss.
 
 - If you would like to make your fork, public or private, feel free to do that as the list is released into the public domain under CC0.
+
+
+### Any plans for extending this format? How could it be made more distributed?
+
+Yes! Currently, all the web archives are specified explicitly in this repository.
+
+However, it would be really great if web archives start to 'advertise' what APIs they support and other information included in the WAM file.
+
+For example, an archive could provide: ``http://myarchive.example.com/wam.yaml`` and then the file need not be stored in this repository, and we would only need to add this url to the [index](webarchives.yaml)
+
+If adding support for WAM to a web archive, please let us know or submit a PR to include this information.
 
 
 ### What tools use this list?
@@ -94,14 +106,14 @@ None yet!
 
 But we hope that this will change, and would be happy to add any tools that make use of this list, directly or directly.
 
-A future release of [pywb](https://github.com/ikreymer/pywb) will likely add support for reading this list directly.
+A future release of [pywb](https://github.com/ikreymer/pywb) will likely add support for reading WAM format files.
 
-[Webrecorder](https://webrecorder.io/) may use this list to provide users the ability to work with existing web archives.
+[Webrecorder](https://webrecorder.io/) may also use this directory to provide users the ability to work with existing web archives.
 
 
 ### Who created this list?
 
-This list originates with the [Webrecorder project](https://github.com/webrecorder/), which aims to promote distributed web archiving, encouraging anyone to create and run their own web archives. Having a public, distributed web archive list aligns perfectly with this mission.
+This list originates with the [Webrecorder project](https://github.com/webrecorder/), which aims to promote distributed web archiving, encouraging anyone to create and run their own web archives. Having a formal Web Archive Manifest (WAM) as well as a public, distributed web archive directory aligns perfectly with this mission.
 
 You may note that Webrecorder is not yet included in this list! This is mostly due to to current technical limitations. Webrecorder allows users to create public and private collections, and there is not yet a way to access the content that users have made public through a single access point. This answer is here to remind us to solve this issue :)
 
@@ -109,4 +121,4 @@ You may note that Webrecorder is not yet included in this list! This is mostly d
 ### License
 ![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)
 
-This document and the accompanying [webarchives.yaml](webarchives.yaml) list are released into the public domain under CC0.
+This document, the [WAM](WAM.md) format and the accompanying [web archive directory](webarchives) are released into the public domain under CC0.
