@@ -1,0 +1,10 @@
+version: '1.0'
+
+webarchives:
+  dl_wa:
+    name: 'Deposito Legale: italian legal deposit web archive'
+    about: 'http://www.depositolegale.it'
+
+    apis:
+      cdx:
+        query: 'https://index.depositolegale.it/cdx?url={url}'
