@@ -1,0 +1,16 @@
+version: '1.0'
+
+webarchives:
+  wr_io:
+    name: 'Webrecorder'
+    about: 'https://webrecorder.io/'
+
+    # collections also include username: '<username>/<collection>'
+    collections: '([\w-]+)/([\w-]+)'
+
+    apis:
+      wayback:
+        calendar: 'https://webrecorder.io/{collection}/*/'
+        replay:
+          rewritten: 'https://webrecorder.io/{collection}/{timestamp}/{url}'
+          raw: 'https://webrecorder.io/{collection}/{timestamp}id_/{url}'

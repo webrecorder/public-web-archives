@@ -105,8 +105,6 @@ A future release of [pywb](https://github.com/ikreymer/pywb) will likely add sup
 
 This web archive listing and the [WAM](WAM.md) format originates with the [Webrecorder project](https://github.com/webrecorder/), which aims to promote distributed web archiving, encouraging anyone to create and run their own web archives. Having a formal Web Archive Manifest, as well as a public, distributed web archive directory aligns perfectly with this mission.
 
-You may note that Webrecorder is not yet included in this list! This is mostly due to to current technical limitations. Webrecorder allows users to create public and private collections, and there is not yet a way to access the content that users have made public through a single access point. This answer is here to remind us to solve this issue :)
-
 
 ### License
 ![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)

@@ -39,14 +39,22 @@ def test_wam_format(filename):
         assert(webarchive['name'])
         assert(webarchive['about'])
 
-        apis = webarchive.get('apis')
-        if not apis:
-            continue
+        assert(key in ('name', 'about', 'apis', 'domain_hint', 'collections') for key in webarchive.keys())
 
         has_collections = ('collections' in webarchive)
         if has_collections:
             # must be a list or a regex
             assert(isinstance(webarchive['collections'], list) or re.compile(webarchive['collections']))
+
+        domain_hint = webarchive.get('domain_hint')
+        if domain_hint:
+            assert(isinstance(domain_hint, list))
+
+        apis = webarchive.get('apis')
+        if not apis:
+            continue
+
+        assert(api_key in ('memento', 'cdx', 'wayback') for api_key in apis.keys())
 
         if 'cdx' in apis:
             assert(apis['cdx']['query'])
