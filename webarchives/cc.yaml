@@ -5,11 +5,109 @@ webarchives:
     name: 'CommonCrawl'
     about: 'http://commoncrawl.org'
 
-    # Full list of collections available at: http://index.commoncrawl.org/
-    collections: 'CC-MAIN-[\d]{4}-[\d]{2}-index'
-
     apis:
       cdx:
         query: 'http://index.commoncrawl.org/{collection}?url={url}'
+
+    # Full list of collections available at: http://index.commoncrawl.org/
+    collections:
+      - id: "CC-MAIN-2017-17-index"
+        name: "April 2017 Index"
+
+      - id: "CC-MAIN-2017-13-index"
+        name: "March 2017 Index"
+
+      - id: "CC-MAIN-2017-09-index"
+        name: "February 2017 Index"
+
+      - id: "CC-MAIN-2017-04-index"
+        name: "January 2017 Index"
+
+      - id: "CC-MAIN-2016-50-index"
+        name: "December 2016 Index"
+
+      - id: "CC-MAIN-2016-44-index"
+        name: "October 2016 Index"
+
+      - id: "CC-MAIN-2016-40-index"
+        name: "September 2016 Index"
+
+      - id: "CC-MAIN-2016-36-index"
+        name: "August 2016 Index"
+
+      - id: "CC-MAIN-2016-30-index"
+        name: "July 2016 Index"
+
+      - id: "CC-MAIN-2016-26-index"
+        name: "June 2016 Index"
+
+      - id: "CC-MAIN-2016-22-index"
+        name: "May 2016 Index"
+
+      - id: "CC-MAIN-2016-18-index"
+        name: "April 2016 Index"
+
+      - id: "CC-MAIN-2016-07-index"
+        name: "February 2016 Index"
+
+      - id: "CC-MAIN-2015-48-index"
+        name: "November 2015 Index"
+
+      - id: "CC-MAIN-2015-40-index"
+        name: "September 2015 Index"
+
+      - id: "CC-MAIN-2015-35-index"
+        name: "August 2015 Index"
+
+      - id: "CC-MAIN-2015-32-index"
+        name: "July 2015 Index"
+
+      - id: "CC-MAIN-2015-27-index"
+        name: "June 2015 Index"
+
+      - id: "CC-MAIN-2015-22-index"
+        name: "May 2015 Index"
+
+      - id: "CC-MAIN-2015-18-index"
+        name: "April 2015 Index"
+
+      - id: "CC-MAIN-2015-14-index"
+        name: "March 2015 Index"
+
+      - id: "CC-MAIN-2015-11-index"
+        name: "February 2015 Index"
+
+      - id: "CC-MAIN-2015-06-index"
+        name: "January 2015 Index"
+
+      - id: "CC-MAIN-2014-52-index"
+        name: "December 2014 Index"
+
+      - id: "CC-MAIN-2014-49-index"
+        name: "November 2014 Index"
+
+      - id: "CC-MAIN-2014-42-index"
+        name: "October 2014 Index"
+
+      - id: "CC-MAIN-2014-41-index"
+        name: "September 2014 Index"
+
+      - id: "CC-MAIN-2014-35-index"
+        name: "August 2014 Index"
+
+      - id: "CC-MAIN-2014-23-index"
+        name: "July 2014 Index"
+
+      - id: "CC-MAIN-2014-15-index"
+        name: "April 2014 Index"
+
+      - id: "CC-MAIN-2014-10-index"
+        name: "March 2014 Index"
+
+      - id: "CC-MAIN-2013-48-index"
+        name: "Winter 2013 Index"
+
+      - id: "CC-MAIN-2013-20-index"
+        name: "Summer 2013 Index"
 
 
