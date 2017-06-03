@@ -13,9 +13,9 @@ webarchives:
         timegate: 'https://www.webarchive.org.uk/wayback/archive/'
         timemap: 'https://www.webarchive.org.uk/wayback/archive/timemap/link/'
 
-        wayback:
-          calendar: 'https://www.webarchive.org.uk/wayback/archive/*/'
-          replay:
-            rewritten: 'https://www.webarchive.org.uk/wayback/archive/{timestamp}/{url}'
-            raw: 'https://www.webarchive.org.uk/wayback/archive/{timestamp}id_/{url}'
+      wayback:
+        calendar: 'https://www.webarchive.org.uk/wayback/archive/*/'
+        replay:
+          rewritten: 'https://www.webarchive.org.uk/wayback/archive/{timestamp}/{url}'
+          raw: 'https://www.webarchive.org.uk/wayback/archive/{timestamp}id_/{url}'
 

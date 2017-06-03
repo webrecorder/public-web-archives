@@ -29,8 +29,9 @@ webarchives:
         name: '114th Congress (2016)'
 
     apis:
-      calendar: 'https://www.webharvest.gov/{collection}/*/'
-      replay:
-        rewritten: 'https://www.webharvest.gov/{collection}/{timestamp}/{url}'
-        raw: 'https://www.webharvest.gov/{collection}/{timestamp}id_/{url}'
+      wayback:
+        calendar: 'https://www.webharvest.gov/{collection}/*/'
+        replay:
+          rewritten: 'https://www.webharvest.gov/{collection}/{timestamp}/{url}'
+          raw: 'https://www.webharvest.gov/{collection}/{timestamp}id_/{url}'
 

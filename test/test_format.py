@@ -22,6 +22,11 @@ def filename(request):
     return request.param
 
 
+
+def assert_keys(match_keys, adict):
+    assert(all((key in match_keys) for key in adict.keys()))
+
+
 def test_wam_format(filename):
     """ Ensure the yaml file is valid
     and all required fields are present in each api block
@@ -35,11 +40,11 @@ def test_wam_format(filename):
     assert(config['version'] == '1.0')
 
     for name, webarchive in config['webarchives'].items():
+        assert_keys(('name', 'about', 'apis', 'domain_hint', 'collections'), webarchive)
+
         assert(name)
         assert(webarchive['name'])
         assert(webarchive['about'])
-
-        assert(key in ('name', 'about', 'apis', 'domain_hint', 'collections') for key in webarchive.keys())
 
         has_collections = ('collections' in webarchive)
         if has_collections:
@@ -54,16 +59,19 @@ def test_wam_format(filename):
         if not apis:
             continue
 
-        assert(api_key in ('memento', 'cdx', 'wayback') for api_key in apis.keys())
+        assert_keys(('memento', 'cdx', 'wayback'), apis)
 
         if 'cdx' in apis:
+            assert_keys(('query'), apis['cdx'])
             assert(apis['cdx']['query'])
 
         if 'memento' in apis:
+            assert_keys(('timegate', 'timemap'), apis['memento'])
             assert(apis['memento']['timegate'])
             assert(apis['memento']['timemap'])
 
         if 'wayback' in apis:
+            assert_keys(('replay', 'calendar'), apis['wayback'])
             assert(apis['wayback']['replay'])
 
             for mode in ['raw', 'rewritten']:
