@@ -10,7 +10,7 @@ webarchives:
 
     apis:
       wayback:
-        calendar: 'http://nukrobi2.nuk.uni-lj.si:8080/wayback//*/'
+        calendar: 'http://nukrobi2.nuk.uni-lj.si:8080/wayback/*/'
         replay:
           rewritten: 'http://nukrobi2.nuk.uni-lj.si:8080/wayback/{timestamp}/{url}'
           raw: 'http://nukrobi2.nuk.uni-lj.si:8080/wayback/{timestamp}id_/{url}'
