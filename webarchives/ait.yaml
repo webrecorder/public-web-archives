@@ -23,7 +23,7 @@ webarchives:
 
   # Archive-It Per-Collection Access
   ait_coll:
-    name: 'Archive-It Collections'
+    name: 'Archive-It Collection'
     about: 'https://archive-it.org/'
 
     # collection can be any number

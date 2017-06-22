@@ -9,10 +9,14 @@ webarchives:
       - '.onb.ac.at'
 
     apis:
+      memento:
+        timegate: 'https://webarchiv.onb.ac.at/web/'
+        timemap: 'https://webarchiv.onb.ac.at/web/timemap/link/'
+
       wayback:
         calendar: 'https://webarchiv.onb.ac.at/web/*/'
         replay:
           rewritten: 'https://webarchiv.onb.ac.at/web/{timestamp}/{url}'
-          raw: NULL
+          raw: 'https://webarchiv.onb.ac.at/web/{timestamp}id_/{url}'
 
 
