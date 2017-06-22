@@ -1,0 +1,18 @@
+version: '1.0'
+
+webarchives:
+  at_wa:
+    name: 'Webarchive Austria'
+    about: 'https://webarchiv.onb.ac.at'
+
+    domain_hint:
+      - '.onb.ac.at'
+
+    apis:
+      wayback:
+        calendar: 'https://webarchiv.onb.ac.at/web/*/'
+        replay:
+          rewritten: 'https://webarchiv.onb.ac.at/web/{timestamp}/{url}'
+          raw: NULL
+
+
