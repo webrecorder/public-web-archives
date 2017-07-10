@@ -24,7 +24,7 @@ webarchives:
   # Archive-It Per-Collection Access
   ait_coll:
     name: 'Archive-It Collection'
-    about: 'https://archive-it.org/'
+    about: 'https://archive-it.org/collections/'
 
     # collection can be any number
     collections: '\d+'
