@@ -14,5 +14,5 @@ webarchives:
         calendar: 'http://webarchive.nationalarchives.gov.uk/*/'
         replay:
           rewritten: 'http://webarchive.nationalarchives.gov.uk/{timestamp}/{url}'
-          raw: 'http://webarchive.nationalarchives.gov.uk/raw/{timestamp}/{url}'
+          raw: 'http://webarchive.nationalarchives.gov.uk/{timestamp}id_/{url}'
 
