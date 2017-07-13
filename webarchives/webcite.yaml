@@ -5,5 +5,10 @@ webarchives:
     name: 'WebCite'
     about: 'http://www.webcitation.org/'
 
-    #APIS unknown
-
+  apis:
+    memento:
+      timegate: http://timetravel.mementoweb.org/webcite/timegate/
+      timemap: http://timetravel.mementoweb.org/webcite/timemap/link/
+      # This is provided by a 3rd party
+      # also http://delorean.lanl.gov/tg/webcite 
+      # and http://labs.mementoweb.org/webcite
