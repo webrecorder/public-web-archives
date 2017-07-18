@@ -7,12 +7,13 @@ webarchives:
 
     apis:
       memento:
-        timegate: 'http://webarchive.nationalarchives.gov.uk/timegate/'
-        timemap: 'http://webarchive.nationalarchives.gov.uk/timemap/'
+        timegate: 'http://webarchive.nationalarchives.gov.uk/'
+        timemap: 'http://webarchive.nationalarchives.gov.uk/timemap/*/'
 
       wayback:
         calendar: 'http://webarchive.nationalarchives.gov.uk/*/'
         replay:
           rewritten: 'http://webarchive.nationalarchives.gov.uk/{timestamp}/{url}'
           raw: 'http://webarchive.nationalarchives.gov.uk/{timestamp}id_/{url}'
+
 
