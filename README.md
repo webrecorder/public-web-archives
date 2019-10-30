@@ -57,7 +57,7 @@ Yes! It is important to recognize that there are a few existing lists out there,
  - The [Memento Project](http://timetravel.mementoweb.org/) at LANL deserves much credit for starting and maintaining [achivelist.xml](http://labs.mementoweb.org/aggregator_config/archivelist.xml), a list of archives that support the [Memento Protocol](https://tools.ietf.org/html/rfc7089).
    This list is a key part of the [time travel search engine](http://timetravel.mementoweb.org/about/) and [memento aggregator api service](http://timetravel.mementoweb.org/guide/api/)
 
- - The [ODU Memento Aggregator](https://github.com/oduwsdl/memgator) project also contains such a list: [archives.json](https://github.com/oduwsdl/memgator/blob/master/archives.json)
+ - The [ODU Memento Aggregator](https://github.com/oduwsdl/MemGator) project also contains such a list: [archives.json](https://oduwsdl.github.io/MemGator/archives.json)
 
  - The [oldweb.today](http://oldweb.today/) project uses an earlier version of such a list: [archives.yaml](https://github.com/oldweb-today/netcapsule/blob/master/archives.yaml) This list is used to provide archives accessible via the service.
 
