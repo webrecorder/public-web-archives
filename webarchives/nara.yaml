@@ -2,7 +2,7 @@ version: '1.0'
 
 webarchives:
   nara:
-    name: 'National Archives and Record Administartion'
+    name: 'National Archives and Record Administration'
     about: 'https://webharvest.gov/'
 
     # Collection data obtained from listing at: https://www.webharvest.gov/
