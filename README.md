@@ -61,6 +61,8 @@ Yes! It is important to recognize that there are a few existing lists out there,
 
  - The [oldweb.today](http://oldweb.today/) project uses an earlier version of such a list: [archives.yaml](https://github.com/oldweb-today/netcapsule/blob/master/archives.yaml) This list is used to provide archives accessible via the service.
 
+ - The [ArchiveBox](https://github.com/ArchiveBox/ArchiveBox) project also maintains a list of [web archiving software and initiatives](https://github.com/ArchiveBox/ArchiveBox/wiki/Web-Archiving-Community)
+
  - Wikipedia also maintains a [Listing of Web archiving initiatives](https://en.wikipedia.org/wiki/List_of_Web_archiving_initiatives)
 
 If there are other such lists, feel free to let us know or submit a pull request to include them here.
